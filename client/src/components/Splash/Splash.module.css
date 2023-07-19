@@ -1,0 +1,43 @@
+.splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 105vh;
+  padding: 0rem !important;
+  margin: -2rem !important;
+  background-image: url("../../assets/splashBackgroundImage.jpeg");
+  background-size: cover;
+}
+.title {
+  color: var(--white);
+  font-size: 3em;
+
+  text-shadow: 4px 4px 10px #000000;
+  display: block;
+  margin-top: 12vh;
+}
+.button {
+  margin-top: 10vh;
+  background-color: var(--accent);
+  padding: 1rem 3rem;
+  border-radius: 2em;
+  border: none;
+  color: var(--white);
+  font-size: 2em;
+  box-shadow: 0px 0px 10px var(--white);
+}
+.button:hover {
+  background-color: var(--white);
+  color: var(--accent);
+  cursor: pointer;
+
+  box-shadow: 4px 4px 10px #659b5e;
+}
+.button:active {
+  background-color: var(--accent);
+  color: var(--white);
+  /* set button shadow white small */
+  text-shadow: 2px 2px 5px #ffffff;
+  display: ;
+}
