@@ -5,6 +5,7 @@
   --white: #ffffff;
   --accent: #659b5e;
 }
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
 html {
   padding: 0rem;
   background-color: rgb(228, 228, 228);
@@ -14,7 +15,7 @@ body{
     margin: 0rem;
 }
 html h1 {
-  font-family: "Roboto", sans-serif;
+  font-family: "pokemon-solid", sans-serif;
 }
 #root {
 }
