@@ -1,18 +1,19 @@
 :root {
-    --primary: #628395;
-    --secondary: #F6F0ED;
-    --text: #383838;
-    --white: #FFFFFF;
-    --accent: #659B5E;
-  }
-html {
-  padding: 1rem;
-  background-color: rgb(228, 228, 228);
-  /* roboto font from google cdn*/
-
+  --primary: #628395;
+  --secondary: #f6f0ed;
+  --text: #383838;
+  --white: #ffffff;
+  --accent: #659b5e;
 }
-html h1{
-
+html {
+  padding: 0rem;
+  background-color: rgb(228, 228, 228);
+  margin: 0rem;
+}
+body{
+    margin: 0rem;
+}
+html h1 {
   font-family: "Roboto", sans-serif;
 }
 #root {
