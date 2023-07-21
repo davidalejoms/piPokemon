@@ -13,7 +13,7 @@
 .title {
   color: var(--white);
   font-size: 3em;
-text-align: center;
+  text-align: center;
   text-shadow: 4px 4px 10px #000000;
   display: block;
   margin-top: 20vh;
@@ -41,4 +41,17 @@ text-align: center;
   /* set button shadow white small */
   text-shadow: 2px 2px 5px #ffffff;
   display: ;
+}
+
+/* for cellphones */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2em;
+  }
+  .button {
+    font-size: 1.5em;
+  }
+  img{
+    width: 100%;
+  }
 }
