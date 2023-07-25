@@ -7,7 +7,7 @@
 @media (max-width: 768px) {
   .MenuIcon {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 1rem;
     right: 1rem;
     font-size: 2rem;

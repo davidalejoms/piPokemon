@@ -16,6 +16,7 @@ function GridContainer(props) {
           Velocidad={pokemon.Velocidad}
           Altura={pokemon.Altura}
           Peso={pokemon.Peso}
+          Tipo={pokemon.Tipo}
         />
       ))}
     </div>

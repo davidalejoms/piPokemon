@@ -4,16 +4,47 @@
   align-items: center;
   justify-content: center;
   border: 2px solid green;
-  border-radius: 2em;
+  border-radius: 1em;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
 }
+.cardUnit:hover {
+  box-shadow: 0px 0px 30px rgb(0, 254, 0);
+}
+
+.mainImg {
+  padding: 3rem;
+  max-width: 60%;
+  min-height: auto;
+  opacity: 1;
+  transition: opacity 3s ease-in-out;
+}
+.cardUnit:hover .mainImg {
+  display: none;
+  padding: 3rem;
+  max-width: 60%;
+  opacity: 1;
+  transition: opacity 3s ease-in-out;
+}
+
+.auxImg {
+  max-width: 0%;
+}
+.cardUnit:hover .auxImg {
+  display: block;
+  padding: 3rem;
+  max-width: 80%;
+  opacity: 1;
+  transition: opacity 3s ease-in-out;
+}
+
 .statsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Dos columnas con ancho igual */
-  gap: 10px; /* Espacio entre las columnas */
+  gap: 2rem; /* Espacio entre las columnas */
   width: 95%;
   margin-bottom: 1rem;
+  margin-top: 1.5em;
 }
 .dataContainer {
   display: flex;
@@ -23,16 +54,23 @@
 
 .cardUnit h2 {
   text-align: left;
+  width: 100%;
+  padding-left: 3rem;
+  text-transform: capitalize;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 .statsLabel {
-  font-weight: bold;
+  /* poppins font */
+  font-family: "Open Sans", sans-serif;
+  font-weight: lighter;
   text-align: left;
   color: #484848b0;
   text-transform: uppercase;
   font-weight: bold;
 }
 .statsValue {
-  border: 1px solid gray;
+  border: 1px solid rgba(128, 128, 128, 0.338);
   border-radius: 0.5em;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;

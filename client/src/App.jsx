@@ -7,15 +7,16 @@ import Nav from "./components/Nav/Nav"
 
 import { Route, Routes, useLocation } from "react-router-dom"
 import NewPokemon from "./components/NewPokemon/NewPokemon"
+import Detail from "./components/Detail/Detail"
 
 function App() {
   const location = useLocation()
-  const isRootPath = location.pathname === "/";
+  const isRootPath = location.pathname === "/"
   return (
     <div className="App">
       <Devinfo visible={false} />
 
-      { !isRootPath && <Nav />}
+      {!isRootPath && <Nav />}
       <Routes>
         <Route
           path="/"
@@ -35,6 +36,11 @@ function App() {
         <Route
           path="/about"
           element={<About />}
+        />
+
+        <Route
+          path="/pokemon/detail/:id"
+          element={<Detail />}
         />
 
         <Route
