@@ -5,17 +5,20 @@
   --white: #ffffff;
   --accent: #659b5e;
 }
-@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+@import url("https://fonts.cdnfonts.com/css/pokemon-solid");
 html {
   padding: 0rem;
-  background-color: rgb(228, 228, 228);
+  background-color: rgb(255, 255, 255);
   margin: 0rem;
 }
-body{
-    margin: 0rem;
+body {
+  margin: 0rem;
 }
 html h1 {
   font-family: "pokemon-solid", sans-serif;
 }
 #root {
+}
+* {
+  /* border: 1px solid #000; */
 }

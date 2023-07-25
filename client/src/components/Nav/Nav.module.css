@@ -1,0 +1,26 @@
+.MenuIcon {
+  display: none;
+}
+.logoMobile {
+  display: none;
+}
+@media (max-width: 768px) {
+  .MenuIcon {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    z-index: 30;
+    color: var(--text);
+  }
+  .logoMobile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 20;
+  }
+}
