@@ -13,7 +13,7 @@ function App() {
   const isRootPath = location.pathname === "/";
   return (
     <div className="App">
-      <Devinfo visible={true} />
+      <Devinfo visible={false} />
 
       { !isRootPath && <Nav />}
       <Routes>
