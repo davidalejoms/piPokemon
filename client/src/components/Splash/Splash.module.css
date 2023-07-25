@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   /* height: 105vh; */
   padding: 0rem !important;
   margin: 0rem !important;
@@ -11,6 +11,15 @@
   min-height: 100vh;
   background-position: center;
 }
+.contentSplash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 35%;
+}
+
 .title {
   letter-spacing: 0.2em;
   color: black;
@@ -20,15 +29,11 @@
   text-align: center;
   text-shadow: 0px 0px 10px var(--white);
   display: block;
-  margin-top: 10vh;
   text-shadow: -4px -4px 0 white, 4px -4px 0 white, -4px 4px 0 white, 4px 4px 0 white;
-   
 }
 .button {
   font-family: "Pokemon Solid", sans-serif;
   letter-spacing: 0.2em;
-
-  margin: 5vh 0;
   background-color: var(--accent);
   padding: 1rem 3rem;
   border-radius: 2em;
