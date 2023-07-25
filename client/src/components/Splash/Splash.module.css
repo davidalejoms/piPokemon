@@ -8,6 +8,7 @@
   margin: 0rem !important;
   background-image: url("../../assets/splashBackgroundImage.jpeg");
   background-size: cover;
+  min-height: 100vh;
   background-position: center;
 }
 .title {
@@ -19,7 +20,7 @@
   text-align: center;
   text-shadow: 0px 0px 10px var(--white);
   display: block;
-  margin-top: 20vh;
+  margin-top: 10vh;
   text-shadow: -4px -4px 0 white, 4px -4px 0 white, -4px 4px 0 white, 4px 4px 0 white;
    
 }
@@ -27,7 +28,7 @@
   font-family: "Pokemon Solid", sans-serif;
   letter-spacing: 0.2em;
 
-  margin: 10vh 0;
+  margin: 5vh 0;
   background-color: var(--accent);
   padding: 1rem 3rem;
   border-radius: 2em;
@@ -53,7 +54,7 @@
 }
 
 /* for cellphones */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .title {
     font-size: 2em;
   }
