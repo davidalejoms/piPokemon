@@ -1,6 +1,6 @@
-import { sliderMenu, sliderContainer, arrows } from "./Pokemon.module.css"
 import GridContainer from "../GridContainer/GridContainer"
-import { TbMathLower, TbMathGreater } from "react-icons/tb"
+import SliderContainer from "./SliderContainer/SliderContainer"
+import OrdersAndFilters from "./OrdersAndFilters/OrdersAndFilters"
 const Pokemon = () => {
   const pokemons = [
     {
@@ -99,33 +99,9 @@ const Pokemon = () => {
 
   return (
     <>
-      <div className={sliderContainer}>
-        <TbMathLower className={arrows} />
-        <ul className={sliderMenu}>
-          <li>
-            <button>Tierra</button>
-          </li>
-          <li>
-            <button>Fuego</button>
-          </li>
-          <li>
-            <button>Aire</button>
-          </li>
-          <li>
-            <button>Luchador</button>
-          </li>
-          <li>
-            <button>Agua</button>
-          </li>
-          <li>
-            <button>Psiquico</button>
-          </li>
-          <li>
-            <button>Eléctrico</button>
-          </li>
-        </ul>
-        <TbMathGreater className={arrows} />
-      </div>
+      <OrdersAndFilters />
+      <SliderContainer />
+
       <GridContainer pokemons={pokemons} />
     </>
   )

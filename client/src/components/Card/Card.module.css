@@ -41,9 +41,10 @@
 .statsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Dos columnas con ancho igual */
-  gap: 2rem; /* Espacio entre las columnas */
-  width: 95%;
-  margin-bottom: 1rem;
+  gap: 1rem; /* Espacio entre las columnas */
+  margin: 1rem;
+  width: 90%;
+  /* border: 1px solid red; */
   margin-top: 1.5em;
 }
 .dataContainer {
@@ -63,11 +64,10 @@
 .statsLabel {
   /* poppins font */
   font-family: "Open Sans", sans-serif;
-  font-weight: lighter;
+  font-weight: light;
   text-align: left;
   color: #484848b0;
   text-transform: uppercase;
-  font-weight: bold;
 }
 .statsValue {
   border: 1px solid rgba(128, 128, 128, 0.338);

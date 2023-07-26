@@ -5,6 +5,7 @@ import { GiWeight } from "react-icons/gi"
 import { BsSpeedometer2 } from "react-icons/bs"
 import { MdOutlineCategory } from "react-icons/md"
 import { GiLifeBar } from "react-icons/gi"
+import{BsFillShieldSlashFill} from "react-icons/bs"
 import { Link } from "react-router-dom"
 function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura, Peso, Tipo }) {
   return (
@@ -42,7 +43,9 @@ function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura,
             <span className={statsValue}>{Vida} HP</span>
           </div>
           <div className={dataContainer}>
-            <span className={statsLabel}>Defensa:</span>
+            <span className={statsLabel}>
+              <BsFillShieldSlashFill style={{ paddingRight: "0.6em" }}/>
+              Defensa:</span>
             <span className={statsValue}>{Defensa}</span>
           </div>
           <div className={dataContainer}>
