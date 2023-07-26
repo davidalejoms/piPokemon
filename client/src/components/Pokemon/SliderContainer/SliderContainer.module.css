@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: .05rem;
+  margin: 0.05rem;
   width: 100%;
 }
 .sliderMenu {
@@ -12,6 +12,9 @@
   max-width: 100%;
   overflow-x: scroll;
   scrollbar-width: none;
+  scroll-behavior: smooth;
+  /* slide scroll to the right */
+  scroll-snap-type: x mandatory;
 }
 .sliderMenu::-webkit-scrollbar {
   display: none;
@@ -31,4 +34,15 @@
   cursor: pointer;
   border-radius: 999px;
   transition: all 0.3s ease-in-out;
+}
+.arrows {
+display: none;
+}
+@media screen and (max-width: 768px) {
+  .arrows {
+  display: block;
+  margin-top: 1.1rem;
+  font-weight: bolder;
+  color: var(--text);
+  }
 }
