@@ -24,13 +24,16 @@ const OrdersAndFilters = () => {
     <div className={ordersAndFiltersContainer}>
       <ul className={ordersAndFiltersMain}>
         <li>
-          <button onClick={originHandler}>Origen: <br /> {origin}</button>
+          <label>Origen</label>
+          <button onClick={originHandler}> {origin}</button>
         </li>
         <li>
-          <button onClick={alphaHandler}>Ordenado: <br /> {alpha}</button>
+          <label>Ordenado</label>
+          <button onClick={alphaHandler}> {alpha}</button>
         </li>
         <li>
-          <button onClick={powerOrderHandler}>Poder: <br /> {powerOrder}</button>
+          <label>Poder</label>
+          <button onClick={powerOrderHandler}> {powerOrder}</button>
         </li>
       </ul>
     </div>
