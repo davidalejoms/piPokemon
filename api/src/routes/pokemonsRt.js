@@ -30,14 +30,13 @@ pokemonsHandler.get("/", async (req, res) => {
 // -  Debe funcionar tanto para los pokemones de la API como para los de la base de datos.
 
 pokemonsHandler.get("/:id", async (req, res) => {
- try {
-  const { id } = req.params
-  id && res.status(200).json(await getPokemonDetail(id))
- } catch (error) {
-  res.status(400).json({error: `/:id ${error.message}` })
- }
+  try {
+    const { id } = req.params
+    id && res.status(200).json(await getPokemonDetail(id))
+  } catch (error) {
+    res.status(400).json({ error: `/:id ${error.message}` })
+  }
 })
-
 
 // #### **📍 POST | /pokemons**
 // -  Esta ruta recibirá todos los datos necesarios para crear un pokemon y relacionarlo con sus tipos solicitados.
@@ -52,7 +51,7 @@ pokemonsHandler.post("/", async (req, res) => {
     const newPokemonRes = await newPokemon(ID, Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso)
     res.status(200).json(newPokemonRes)
   } catch (error) {
-    res.status(400).json({ error:` on post pokemon: \n ${error.message}` })
+    res.status(400).json({ error: ` on post pokemon: \n ${error.message}` })
 
     //avoid express to crash on error
   }

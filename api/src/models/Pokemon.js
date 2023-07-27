@@ -3,30 +3,31 @@ const { DataTypes } = require("sequelize")
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("pokemon",
-   {
-    //pokemon.id
-    ID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-    },
-    //.name
-    Nombre: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    //pokemon.sprites.other.home.front_default
-    //pokemon.sprites.other.home.front_shiny
-    Imagen: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    ImagenAux: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    /* 
+  sequelize.define(
+    "pokemon",
+    {
+      //pokemon.id
+      ID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      //.name
+      Nombre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      //pokemon.sprites.other.home.front_default
+      //pokemon.sprites.other.home.front_shiny
+      Imagen: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      ImagenAux: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      /* 
 pokemon.stats[0].base_stat
 stats: [
   {
@@ -37,11 +38,11 @@ stats: [
       url: "https://pokeapi.co/api/v2/stat/1/",
     }, 
     */
-    Vida: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    /* 
+      Vida: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      /* 
     pokemon.stats[1].base_stat
     {
       base_stat: 49,
@@ -52,11 +53,11 @@ stats: [
       },
     },
     */
-    Ataque: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    /* 
+      Ataque: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      /* 
     {
       pokemon.stats[2].base_stat
       base_stat: 49,
@@ -67,11 +68,11 @@ stats: [
       },
     },
     */
-    Defensa: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    } /* 
-    pokemon.stats[2].base_stat
+      Defensa: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      } /* 
+    pokemon.stats[5].base_stat
     {
       base_stat: 45,
       effort: 0,
@@ -81,23 +82,22 @@ stats: [
       },
     },
     */,
-    Velocidad: {
-      type: DataTypes.STRING,
+      Velocidad: {
+        type: DataTypes.STRING,
+      },
+      //pokemon.height
+      Altura: {
+        type: DataTypes.STRING,
+      },
+      // pokemon.weight
+      Peso: {
+        type: DataTypes.STRING,
+      },
     },
-    //pokemon.height
-    Altura: {
-      type: DataTypes.STRING,
-    },
-    // pokemon.weight
-    Peso: {
-      type: DataTypes.STRING,
-    },
-  },
-  {
-    timestamps: false,
-  }
+    {
+      timestamps: false,
+    }
   )
-    
 }
 /* 
 pokemon.stats[0].base_stat
@@ -111,7 +111,7 @@ pokemon.stats[0].base_stat
       }, 
 */
 
-/* 
+/*
 pokemon.id
 const pokemon = {
   abilities: [

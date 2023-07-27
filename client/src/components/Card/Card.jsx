@@ -1,20 +1,31 @@
-import { cardUnit, statsLabel, statsValue, statsContainer, dataContainer, mainImg, auxImg } from "./Card.module.css"
+import {
+  cardUnit,
+  statsLabel,
+  statsValue,
+  statsContainer,
+  dataContainer,
+  mainImg,
+  auxImg,
+  iconWrapper,
+  typeWrapper,
+} from "./Card.module.css"
 import PropTypes from "prop-types"
 import { AiOutlineColumnHeight } from "react-icons/ai"
 import { GiWeight } from "react-icons/gi"
 import { BsSpeedometer2 } from "react-icons/bs"
 import { MdOutlineCategory } from "react-icons/md"
 import { GiLifeBar } from "react-icons/gi"
-import{BsFillShieldSlashFill} from "react-icons/bs"
+import { BsFillShieldSlashFill } from "react-icons/bs"
 import { Link } from "react-router-dom"
-function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura, Peso, Tipo }) {
+function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura, Peso, Tipo, Ataque }) {
   return (
     // disable all link styles
     <Link
+      className={cardUnit}
       to={`detail/${Id}`}
-      style={{ textDecoration: "none", color: "inherit",cursor: "zoom-in" }}
+      style={{ textDecoration: "none", color: "inherit" }}
     >
-      <div className={cardUnit}>
+      <div>
         <img
           className={mainImg}
           src={Imagen}
@@ -25,15 +36,40 @@ function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura,
           src={ImagenAux}
           alt={Nombre}
         />
-        <h2>{Nombre}</h2>
-        <h2>N° {Id}</h2>
+        <h2>
+          {" "}
+          N°{Id} {Nombre}
+        </h2>
+        <h2>Tipo: </h2>
+
+        <ul>
+          <div className={typeWrapper}>
+            {Tipo.map((t, i) => {
+              return (
+                <li key={i}>
+                  <button className={t.tipo}>
+                    <div className={iconWrapper}>
+                      <img
+                        // className={type.Nombre}
+                        src={`/src/assets/icons/${t.tipo}.svg`}
+                        alt=""
+                      />
+                      <div>{t.tipo}</div>
+                    </div>
+                  </button>
+                </li>
+              )
+            })}
+          </div>
+        </ul>
+
         <div className={statsContainer}>
           <div className={dataContainer}>
             <span className={statsLabel}>
               <MdOutlineCategory style={{ paddingRight: "0.6em" }} />
-              Tipo:
+              Ataque:
             </span>
-            <span className={statsValue}>{Tipo}</span>
+            <span className={statsValue}>{Ataque}</span>
           </div>
           <div className={dataContainer}>
             <span className={statsLabel}>
@@ -44,8 +80,9 @@ function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura,
           </div>
           <div className={dataContainer}>
             <span className={statsLabel}>
-              <BsFillShieldSlashFill style={{ paddingRight: "0.6em" }}/>
-              Defensa:</span>
+              <BsFillShieldSlashFill style={{ paddingRight: "0.6em" }} />
+              Defensa:
+            </span>
             <span className={statsValue}>{Defensa}</span>
           </div>
           <div className={dataContainer}>
@@ -81,9 +118,10 @@ Card.propTypes = {
   ImagenAux: PropTypes.string.isRequired,
   Vida: PropTypes.number.isRequired,
   Defensa: PropTypes.number.isRequired,
+  Ataque: PropTypes.number.isRequired,
   Velocidad: PropTypes.number.isRequired,
   Altura: PropTypes.number.isRequired,
   Peso: PropTypes.number.isRequired,
-  Tipo: PropTypes.string.isRequired,
+  Tipo: PropTypes.array.isRequired,
 }
 export default Card

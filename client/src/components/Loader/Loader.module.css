@@ -1,0 +1,26 @@
+.loaderSplash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  background-color: rgba(0, 255, 26, 0.584);
+  /* overflow: hidden; */
+  /* opacity: 0; */
+  /* transition: opacity 0.3s ease-in-out; */
+}
+.loaderSplash img {
+}
+.loaderSplash h1 {
+  color: rgb(56, 56, 56);
+  margin: 0;
+}
+
+.titleWrap {
+  width: 100%;
+}

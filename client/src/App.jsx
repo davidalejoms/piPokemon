@@ -25,6 +25,7 @@ function App() {
 
         <Route
           path="/pokemon"
+          exact
           element={<Pokemon />}
         />
 
