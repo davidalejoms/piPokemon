@@ -17,15 +17,6 @@
   max-width: 250px;
 }
 
-.Navcontainer input {
-  padding: 0.5rem 1rem 0.5rem 3rem;
-  background-color: beige;
-  font-size: 1.2rem;
-  border-radius: 999px;
-  width: 205px;
-  border: 2px solid rgb(158, 158, 158);
-}
-
 .LinkHeader {
   font-family: system-ui;
   color: black;

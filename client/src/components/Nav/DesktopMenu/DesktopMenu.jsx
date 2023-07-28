@@ -1,9 +1,8 @@
 import { Navcontainer, LinkHeader } from "../DesktopMenu/DesktopMenu.module.css"
 import appLogo from "../../../assets/appLogo.gif"
-import { AiOutlineSearch } from "react-icons/ai"
 import { MdCatchingPokemon } from "react-icons/md"
 import { Link } from "react-router-dom"
-
+import SearchField from "../SearchField/SearchField"
 const DesktopMenu = () => {
   return (
     <>
@@ -43,20 +42,7 @@ const DesktopMenu = () => {
         >
           By Type
         </span> */}
-        <form
-          onSubmit={() => alert("A buscar")}
-          style={{ position: "relative" }}
-        >
-          <AiOutlineSearch
-            onClick={() => alert("a buscar")}
-            style={{ position: "absolute", top: 5, left: 10, color: "gray", fontSize: "2.0rem" }}
-          />
-          <input
-            type="text"
-            id="search"
-            placeholder="Pikachu, ditto etc.."
-          />
-        </form>
+        <SearchField />
       </div>
     </>
   )

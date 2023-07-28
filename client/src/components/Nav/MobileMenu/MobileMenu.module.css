@@ -24,21 +24,14 @@
     background-color: rgba(255, 255, 255, 0.852);
     z-index: 10;
   }
-  .mobileMenu input {
-    padding: 0.5rem 1rem 0.5rem 3rem;
-    background-color: beige;
-    font-size: 1.2rem;
-    border-radius: 999px;
-    width: 205px;
-    border: 2px solid rgb(158, 158, 158);
-  }
+
   .LinkMobile {
     display: flex;
     justify-content: center;
     align-items: center;
-    
-margin-top: 2rem ;
-    padding: 0.5rem  3rem;
+
+    margin-top: 2rem;
+    padding: 0.5rem 3rem;
     font-size: 1.2rem;
     border-radius: 999px;
     width: 205px;

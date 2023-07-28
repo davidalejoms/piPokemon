@@ -1,9 +1,9 @@
 import { mobileMenu, LinkMobile, logoMobile } from "./MobileMenu.module.css"
 import { Link } from "react-router-dom"
 import appLogo from "../../../assets/appLogo.gif"
-import { AiOutlineSearch } from "react-icons/ai"
 import PropTypes from "prop-types"
 import { MdCatchingPokemon } from "react-icons/md"
+import SearchField from "../SearchField/SearchField"
 const MobileMenu = ({ toggleMobileMenuHandler }) => {
   return (
     <>
@@ -19,28 +19,23 @@ const MobileMenu = ({ toggleMobileMenuHandler }) => {
         </Link>
       </div>
       <div className={mobileMenu}>
-        <form
-          onSubmit={() => alert("A buscar y se oculta el menu con tooglemenu handler")}
-          style={{ position: "relative" }}
-        >
-          <AiOutlineSearch
-            onClick={() => alert("a buscar y se oculta el menu con tooglemenu handler")}
-            style={{ position: "absolute", top: 5, left: 10, color: "gray", fontSize: "2.0rem" }}
-          />
-          <input
-            type="text"
-            id="search"
-            placeholder="Pikachu, ditto etc.."
-          />
-        </form>
+        <SearchField />
         <Link
           className={LinkMobile}
           to="/Pokemon"
           onClick={toggleMobileMenuHandler}
         >
           <MdCatchingPokemon
-            style={{ fontSize: "2rem", marginTop: "0rem", color: "#fecb04", background: "black", borderRadius: "999px",marginRight:'1rem', }}
-          /> Go to APP
+            style={{
+              fontSize: "2rem",
+              marginTop: "0rem",
+              color: "#fecb04",
+              background: "black",
+              borderRadius: "999px",
+              marginRight: "1rem",
+            }}
+          />{" "}
+          Go to APP
         </Link>
         <Link
           className={LinkMobile}

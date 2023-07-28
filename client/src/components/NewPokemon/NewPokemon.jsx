@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux"
 import styles from "./NewPokemon.module.css"
-
-
 import { AiOutlineColumnHeight } from "react-icons/ai"
 import { GiWeight } from "react-icons/gi"
 import { BsSpeedometer2 } from "react-icons/bs"
@@ -28,10 +26,16 @@ const NewPokemon = () => {
     ]
     return icons[Math.floor(Math.random() * icons.length)]
   }
+  // selector de tipos de pokemon inicio
   const types = useSelector((state) => state.typesOfPokemons)
+  // selector de tipos de pokemon fin
+
+  // validador de datos inicio
   const handleSubmit = (e) => {
     e.preventDefault()
   }
+  // validador de datos fin
+
   return (
     <>
       <div className={styles.componentContainer}>
@@ -39,15 +43,19 @@ const NewPokemon = () => {
         <div className={styles.elementsWrapper}>
           <form onSubmit={handleSubmit}>
             <div className={styles.rowdataAll}>
-              <div className={styles.datain} style={{flexGrow:'2'}}>
+              <div
+                className={styles.datain}
+                style={{ flexGrow: "2" }}
+              >
                 <label htmlFor="Type">
-                <MdOutlineCategory style={{ paddingRight: "0.6em" }} />Pokemon Type:</label>
+                  <MdOutlineCategory style={{ paddingRight: "0.6em" }} />
+                  Pokemon Type:
+                </label>
                 <select
                   name="Type"
                   id=""
                 >
-                  <option value="">Choose one
-                  </option>
+                  <option value="">Choose one</option>
                   {types.map((t, i) => {
                     return (
                       <option
@@ -61,7 +69,9 @@ const NewPokemon = () => {
                 </select>
               </div>
               <div className={styles.datain}>
-                <label htmlFor="Name"><BiRename/> Name:</label>
+                <label htmlFor="Name">
+                  <BiRename /> Name:
+                </label>
                 <input
                   name="Name"
                   type="text"
@@ -88,14 +98,21 @@ const NewPokemon = () => {
             </div>
             <div className={styles.rowdataAll}>
               <div className={styles.datain}>
-                <label htmlFor="Defense"><BsFillShieldSlashFill style={{ paddingRight: "0.6em" }} />Defense:</label>
+                <label htmlFor="Defense">
+                  <BsFillShieldSlashFill style={{ paddingRight: "0.6em" }} />
+                  Defense:
+                </label>
                 <input
                   name="Defense"
                   type="text"
                 />
               </div>
               <div className={styles.datain}>
-                <label htmlFor="Life"> <GiLifeBar style={{ paddingRight: "0.6em" }} />Life:</label>
+                <label htmlFor="Life">
+                  {" "}
+                  <GiLifeBar style={{ paddingRight: "0.6em" }} />
+                  Life:
+                </label>
                 <input
                   name="Life"
                   type="text"
@@ -104,14 +121,21 @@ const NewPokemon = () => {
             </div>
             <div className={styles.rowdataAll}>
               <div className={styles.datain}>
-                <label htmlFor="Speed"> <BsSpeedometer2 style={{ paddingRight: "0.6em" }} />Speed:</label>
+                <label htmlFor="Speed">
+                  {" "}
+                  <BsSpeedometer2 style={{ paddingRight: "0.6em" }} />
+                  Speed:
+                </label>
                 <input
                   name="Speed"
                   type="text"
                 />
               </div>
               <div className={styles.datain}>
-                <label htmlFor="Height"><AiOutlineColumnHeight style={{ paddingRight: "0.6em" }} />Height:</label>
+                <label htmlFor="Height">
+                  <AiOutlineColumnHeight style={{ paddingRight: "0.6em" }} />
+                  Height:
+                </label>
                 <input
                   name="Height"
                   type="text"
@@ -120,14 +144,21 @@ const NewPokemon = () => {
             </div>
             <div className={styles.rowdataAll}>
               <div className={styles.datain}>
-                <label htmlFor="Weight"><GiWeight style={{ paddingRight: "0.6em" }} />Weight:</label>
+                <label htmlFor="Weight">
+                  <GiWeight style={{ paddingRight: "0.6em" }} />
+                  Weight:
+                </label>
                 <input
                   name="Weight"
                   type="text"
                 />
               </div>
               <div className={styles.datain}>
-                <label htmlFor="Attack"> <GiPowerLightning style={{ paddingRight: "0.6em" }} />Attack:</label>
+                <label htmlFor="Attack">
+                  {" "}
+                  <GiPowerLightning style={{ paddingRight: "0.6em" }} />
+                  Attack:
+                </label>
                 <input
                   name="Attack"
                   type="text"
