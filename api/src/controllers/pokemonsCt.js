@@ -39,7 +39,27 @@ const getPokelist = async () => {
 const getPokemonDetail = async (id) => {
   try {
     const pokemonDetail = await axios(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    return pokemonDetail.data
+    const resultZero = []
+    resultZero[0] = pokemonDetail.data
+    console.log(resultZero)
+    const processedPokemon = resultZero.map((processedPokemon) => {
+      return {
+        Id: processedPokemon.id,
+        Nombre: processedPokemon.name,
+        Imagen: processedPokemon.sprites.other.home.front_default,
+        ImagenAux: processedPokemon.sprites.other.home.front_shiny,
+        Vida: processedPokemon.stats[0].base_stat,
+        Ataque: processedPokemon.stats[1].base_stat,
+        Defensa: processedPokemon.stats[2].base_stat,
+        Velocidad: processedPokemon.stats[5].base_stat,
+        Altura: processedPokemon.height,
+        Peso: processedPokemon.weight,
+        Tipo: processedPokemon.types.map((type) => {
+          return { id: type.slot, tipo: type.type.name }
+        }),
+      }
+    })
+    return processedPokemon
   } catch (error) {
     throw new Error("Api Error On /:id ->Detail by id ")
   }
@@ -48,7 +68,27 @@ const getPokemonByName = async (name) => {
   try {
     console.log(name)
     const pokemonDetail = await axios(`https://pokeapi.co/api/v2/pokemon/${name}`)
-    return pokemonDetail.data
+    const resultZero = []
+    resultZero[0] = pokemonDetail.data
+    console.log(resultZero)
+    const processedPokemon = resultZero.map((processedPokemon) => {
+      return {
+        Id: processedPokemon.id,
+        Nombre: processedPokemon.name,
+        Imagen: processedPokemon.sprites.other.home.front_default,
+        ImagenAux: processedPokemon.sprites.other.home.front_shiny,
+        Vida: processedPokemon.stats[0].base_stat,
+        Ataque: processedPokemon.stats[1].base_stat,
+        Defensa: processedPokemon.stats[2].base_stat,
+        Velocidad: processedPokemon.stats[5].base_stat,
+        Altura: processedPokemon.height,
+        Peso: processedPokemon.weight,
+        Tipo: processedPokemon.types.map((type) => {
+          return { id: type.slot, tipo: type.type.name }
+        }),
+      }
+    })
+    return processedPokemon
   } catch (error) {
     throw new Error("Pokemon not found")
   }
