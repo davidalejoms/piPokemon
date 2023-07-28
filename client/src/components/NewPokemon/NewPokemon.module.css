@@ -1,0 +1,199 @@
+* {
+  /* border: 1px solid red; */
+}
+.componentContainer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-width: 100%;
+  /* background-color: olive; */
+  min-height: 100vh;
+}
+.componentContainer h1 {
+  color: var(--text);
+  font-size: 2rem;
+}
+.elementsWrapper {
+  /* background-color: rgb(207, 125, 26); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.componentContainer form {
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  padding: 2rem 1rem;
+  border: 1px solid rgba(39, 255, 32, 0.192);
+  border-radius: 1rem;
+  box-shadow: 0px 0px 50px rgba(4, 255, 0, 0.569);
+}
+
+.rowdataAll {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.rowdataFile {
+  display: flex;
+  flex-direction: row;
+  justify-items: left;
+  align-items: start;
+  /* border:5px solid red; */
+  margin-left: 4rem;
+  width: 100%;
+}
+.datain {
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: left;
+  /* width: 200px; */
+  /* width: 45%%; */
+}
+/* 
+.datain select {
+  width: 100%;
+} */
+.datain label {
+  font-family: "Open Sans", sans-serif;
+  font-weight: light;
+  text-align: left;
+  color: #484848b0;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+  /* 
+  width: 100%;
+  font-family: ; */
+}
+.datain input[type="text"] {
+  width: 85%;
+  border: 1px solid rgba(128, 128, 128, 0.338);
+  border-radius: 0.5em;
+  padding-top: 0.2rem 1rem;
+  font-size: 1.2rem;
+  padding-bottom: 0.3rem;
+  text-align: center;
+  font-weight: bolder;
+  margin: 0;
+  color: var(--text);
+  font-family: system-ui;
+  /* border: 1px solid var(--text);
+   */
+}
+.datain select {
+    width: 85%;
+  border: 1px solid rgba(128, 128, 128, 0.338);
+  border-radius: 0.5em;
+  padding: 0.2rem 1rem;
+  font-size: 1.2rem;
+  padding-bottom: 0.3rem;
+  text-align: center;
+  font-weight: bolder;
+  margin: 0;
+  color: var(--text);
+  font-family: system-ui;
+ 
+}
+style input type="file" .datain input[type="file"] {
+  width: 100%;
+  border: none;
+  color: var(--text);
+  border-radius: none;
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  font-family: system-ui;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.datain button {
+  width: 100%;
+  margin-top: 2rem;
+  background-color: var(--primary);
+  color: var(--white);
+  flex-grow: 1;
+
+  border-radius: 1000px;
+  padding: 0.6rem 10rem;
+  font-size: 1.2rem;
+  font-family: system-ui;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.pokemonWrapper {
+  display: flex;
+  justify-content: center;
+  /* background-color: cyan; */
+  min-width: 50%;
+}
+.pokemonWrapper img {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .componentContainer {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+  }
+  .componentContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .componentContainer form {
+    width: 90%;
+  }
+  .rowdataFile {
+    margin-left: 0rem;
+    width: 100%;
+  }
+  .datain {
+    width: 90%;
+  }
+  .datain label {
+    font-size: 0.8rem;  
+}
+.datain select {
+      font-size: 0.8rem;  
+      padding-top: 0.3rem;
+    /* width: 85%;
+  border: 1px solid rgba(128, 128, 128, 0.338);
+  border-radius: 0.5em;
+  font-size: 1.2rem;
+  padding-bottom: 0.3rem;
+  text-align: center;
+  font-weight: bolder;
+  margin: 0;
+  color: var(--text);
+  font-family: system-ui; */
+ 
+}
+  .componentContainer h1 {
+    /* padding: 1rem; */
+    font-size: 1.6rem;
+  }
+  .elementsWrapper {
+    flex-direction: column-reverse;
+
+    margin: 0.5rem;
+    max-width: 100%;
+  }
+}

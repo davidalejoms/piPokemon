@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import appLogo from "../../../assets/appLogo.gif"
 import { AiOutlineSearch } from "react-icons/ai"
 import PropTypes from "prop-types"
-
+import { MdCatchingPokemon } from "react-icons/md"
 const MobileMenu = ({ toggleMobileMenuHandler }) => {
   return (
     <>
@@ -35,6 +35,15 @@ const MobileMenu = ({ toggleMobileMenuHandler }) => {
         </form>
         <Link
           className={LinkMobile}
+          to="/Pokemon"
+          onClick={toggleMobileMenuHandler}
+        >
+          <MdCatchingPokemon
+            style={{ fontSize: "2rem", marginTop: "0rem", color: "#fecb04", background: "black", borderRadius: "999px",marginRight:'1rem', }}
+          /> Go to APP
+        </Link>
+        <Link
+          className={LinkMobile}
           to="/about"
           onClick={toggleMobileMenuHandler}
         >
@@ -47,13 +56,13 @@ const MobileMenu = ({ toggleMobileMenuHandler }) => {
         >
           Create Your Own
         </Link>
-        <span
+        {/* <span
           className={LinkMobile}
           to="/about"
           onClick={toggleMobileMenuHandler}
         >
           By Type
-        </span>
+        </span> */}
       </div>
     </>
   )

@@ -13,7 +13,7 @@ import PropTypes from "prop-types"
 import { AiOutlineColumnHeight } from "react-icons/ai"
 import { GiWeight } from "react-icons/gi"
 import { BsSpeedometer2 } from "react-icons/bs"
-import { MdOutlineCategory } from "react-icons/md"
+import { GiPowerLightning } from "react-icons/gi"
 import { GiLifeBar } from "react-icons/gi"
 import { BsFillShieldSlashFill } from "react-icons/bs"
 import { Link } from "react-router-dom"
@@ -37,10 +37,9 @@ function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura,
           alt={Nombre}
         />
         <h2>
-          {" "}
-          N°{Id} {Nombre}
+                N°{Id} {Nombre}
         </h2>
-        <h2>Tipo: </h2>
+        <h2>Type: </h2>
 
         <ul>
           <div className={typeWrapper}>
@@ -66,43 +65,43 @@ function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura,
         <div className={statsContainer}>
           <div className={dataContainer}>
             <span className={statsLabel}>
-              <MdOutlineCategory style={{ paddingRight: "0.6em" }} />
-              Ataque:
+              <GiPowerLightning style={{ paddingRight: "0.6em" }} />
+              Attack:
             </span>
             <span className={statsValue}>{Ataque}</span>
           </div>
           <div className={dataContainer}>
             <span className={statsLabel}>
               <GiLifeBar style={{ paddingRight: "0.6em" }} />
-              Vida:
+              Life:
             </span>
             <span className={statsValue}>{Vida} HP</span>
           </div>
           <div className={dataContainer}>
             <span className={statsLabel}>
               <BsFillShieldSlashFill style={{ paddingRight: "0.6em" }} />
-              Defensa:
+              Defense:
             </span>
             <span className={statsValue}>{Defensa}</span>
           </div>
           <div className={dataContainer}>
             <span className={statsLabel}>
               <BsSpeedometer2 style={{ paddingRight: "0.6em" }} />
-              Velocidad:
+              Speed:
             </span>
             <span className={statsValue}>{Velocidad} Km/h</span>
           </div>
           <div className={dataContainer}>
             <span className={statsLabel}>
               <AiOutlineColumnHeight style={{ paddingRight: "0.6em" }} />
-              Altura:
+              height:
             </span>
             <span className={statsValue}>{Altura / 10} Mts</span>
           </div>
           <div className={dataContainer}>
             <span className={statsLabel}>
               <GiWeight style={{ paddingRight: "0.6em" }} />
-              Peso:
+              Weight:
             </span>
             <span className={statsValue}>{Peso / 10} Kg</span>
           </div>
@@ -115,7 +114,7 @@ Card.propTypes = {
   Id: PropTypes.number.isRequired,
   Nombre: PropTypes.string.isRequired,
   Imagen: PropTypes.string.isRequired,
-  ImagenAux: PropTypes.string.isRequired,
+  ImagenAux: PropTypes.string,
   Vida: PropTypes.number.isRequired,
   Defensa: PropTypes.number.isRequired,
   Ataque: PropTypes.number.isRequired,

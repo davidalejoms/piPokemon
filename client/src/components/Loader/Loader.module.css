@@ -24,3 +24,16 @@
 .titleWrap {
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  
+  .loaderSplash h1 {
+    font-size: 1.2rem;
+  }
+  .loaderSplash img {
+  width: 60%;
+  margin-bottom: 2rem;
+  }
+  
+}
+  
+

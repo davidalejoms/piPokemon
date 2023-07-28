@@ -28,6 +28,7 @@ const Loader = () => {
       <div className="titleWrap"></div>
       <h1>Loading your pokemons</h1>
       <h1>
+        <span style={{ fontSize: "2em" }}>.</span>
         <TypeAnimation
           sequence={[
             "",

@@ -33,7 +33,7 @@ GridContainer.propTypes = {
       Id: PropTypes.number.isRequired,
       Nombre: PropTypes.string.isRequired,
       Imagen: PropTypes.string.isRequired,
-      ImagenAux: PropTypes.string.isRequired,
+      ImagenAux: PropTypes.string,
       Vida: PropTypes.number.isRequired,
       Defensa: PropTypes.number.isRequired,
       Ataque: PropTypes.number.isRequired,

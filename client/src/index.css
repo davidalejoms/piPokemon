@@ -21,6 +21,7 @@ html h1 {
 #root {
 }
 * {
+  font-family: "Open Sans", sans-serif;
   /* border diagnostics */
 
   /* border: 1px solid #000; */

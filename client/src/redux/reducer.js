@@ -10,7 +10,6 @@ import {
   ORDER_BY_POWER_ASC,
   ORDER_BY_POWER_DESC,
   FILTER_BY_TYPE,
-  orderAZ,
 } from "../redux/actions" // las acctions se importan en el reducer
 const initialState = {
   typesOfPokemons: [], // aqui se guardan los tipos de pokemones en la carga inicial

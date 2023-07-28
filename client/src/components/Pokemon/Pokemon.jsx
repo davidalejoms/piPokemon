@@ -20,11 +20,13 @@ const Pokemon = () => {
   useEffect(() => {
     // si no hay nada en el estado global se carga la api
     if (AllData.length === 0) {
-      const endpoint = "http://localhost:3001/pokemons"
+      // const endpoint = "http://localhost:3001/pokemons"
+      const endpoint = import.meta.env.VITE_APIURLPOKEMONS
       const begin = async () => {
         const response = await axios.get(endpoint)
         dispatch(loadApi(response.data)) //carga el estaddo global con toda la data en allPokemons y en caché
-        const endpointTypes = "http://localhost:3001/types"
+        // const endpointTypes = "http://localhost:3001/types"
+        const endpointTypes = import.meta.env.VITE_APIURLTYPES
         const responseTypes = await axios.get(endpointTypes)
         dispatch(loadTypes(responseTypes.data))
         setLoader(false) // apaga el loader
