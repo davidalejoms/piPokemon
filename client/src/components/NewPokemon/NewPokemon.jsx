@@ -71,7 +71,8 @@ const NewPokemon = () => {
     setFields({ ...fields, [e.target.name]: e.target.value })
     const name = e.target.name
     const value = e.target.value
-    newPokemonValidator(name, value, setErrors)
+    const files = e.target.files
+    newPokemonValidator(name, value, files, setErrors)
   }
 
   const handleSubmit = (e) => {
