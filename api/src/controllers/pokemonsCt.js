@@ -41,7 +41,7 @@ const getPokemonDetail = async (id) => {
     const pokemonDetail = await axios(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const resultZero = []
     resultZero[0] = pokemonDetail.data
-    console.log(resultZero)
+    // console.log(resultZero)
     const processedPokemon = resultZero.map((processedPokemon) => {
       return {
         Id: processedPokemon.id,

@@ -95,7 +95,7 @@
    */
 }
 .datain select {
-    width: 85%;
+  width: 85%;
   border: 1px solid rgba(128, 128, 128, 0.338);
   border-radius: 0.5em;
   padding: 0.2rem 1rem;
@@ -106,7 +106,6 @@
   margin: 0;
   color: var(--text);
   font-family: system-ui;
- 
 }
 style input type="file" .datain input[type="file"] {
   width: 100%;
@@ -169,23 +168,12 @@ style input type="file" .datain input[type="file"] {
     width: 90%;
   }
   .datain label {
-    font-size: 0.8rem;  
-}
-.datain select {
-      font-size: 0.8rem;  
-      padding-top: 0.3rem;
-    /* width: 85%;
-  border: 1px solid rgba(128, 128, 128, 0.338);
-  border-radius: 0.5em;
-  font-size: 1.2rem;
-  padding-bottom: 0.3rem;
-  text-align: center;
-  font-weight: bolder;
-  margin: 0;
-  color: var(--text);
-  font-family: system-ui; */
- 
-}
+    font-size: 0.8rem;
+  }
+  .datain select {
+    font-size: 0.8rem;
+    padding-top: 0.3rem;
+  }
   .componentContainer h1 {
     /* padding: 1rem; */
     font-size: 1.6rem;
@@ -196,4 +184,13 @@ style input type="file" .datain input[type="file"] {
     margin: 0.5rem;
     max-width: 100%;
   }
+  .pokemonWrapper img {
+    max-width: 60%;
+    margin-bottom: 2rem;
+  }
+}
+.errorMessage {
+  color: red;
+  margin: 0.1rem 0 0 0.5rem;
+  max-width: 100%;
 }

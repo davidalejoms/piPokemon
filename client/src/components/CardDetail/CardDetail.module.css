@@ -1,21 +1,33 @@
+.cardUnit * {
+  /* border: 1px solid red; */
+}
 .cardUnit {
+  background-color: rgb(44, 44, 44);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid green;
-  border-radius: 1em;
+  /* border-radius: 1em; */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
   text-align: center;
-  /* min-width: 300px;
-    max-width: 350px; 
-    flex:1;
-    */
-  /*  */
+  margin: 0 auto;
+  height: 100vh;
 }
-.cardUnit:hover {
-  box-shadow: 0px 0px 30px rgb(0, 254, 0);
+
+.detailContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.statsWrapper {
+  padding: 3rem;
+  border-radius: 3rem;
+  box-shadow: 0px 0px 30px rgb(255, 255, 255);
+  background-color: #fff;
+  z-index: 10;
 }
 .cardUnit ul {
   list-style-type: none;
@@ -40,35 +52,15 @@
   margin-right: 0.5rem;
 }
 
-.mainImg {
+.mainImg,
+.auxImg {
   padding: 3rem;
-  max-width: 60%;
+  max-width: 50%;
   min-height: auto;
   opacity: 1;
   transition: opacity 3s ease-in-out;
   margin: 0 auto;
-}
-.cardUnit:hover .mainImg {
-  display: none;
-}
-
-.auxImg {
-  max-width: 0%;
-}
-.cardUnit:hover .auxImg {
-  /* todo cuadrar para todos los dispositivos */
-  display: block;
-  padding: 3rem;
-  max-width: 65%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.8) translateY(-1rem);
-  /* margin-top: -1rem; */
-  /* margin-bottom: 1rem; */
-  z-index: -500;
-}
-.cardUnit:hover {
-  border: none;
+  filter: drop-shadow(4px 4px 18px rgba(255, 255, 255, 0.825));
 }
 
 .statsContainer {
@@ -120,4 +112,41 @@
 .typeWrapper {
   display: flex;
   width: 100%;
+}
+.bouncer {
+  animation: bounce 0.5s infinite;
+}
+@keyframes bounce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cardUnit {
+    max-width: 100%;
+    height: 120vh;
+    justify-content: start;
+    border-radius: 0;
+  }
+  .detailContainer {
+    flex-direction: column;
+  }
+
+  .statsWrapper {
+    max-width: 100%;
+  }
+  .mainImg {
+    max-width: 80%;
+    padding: 10rem auto 0 -2rem;
+  }
+  .auxImg {
+    display: none;
+  }
 }

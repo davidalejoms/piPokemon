@@ -16,13 +16,14 @@ const SliderContainer = () => {
     }
     return 0
   })
-  const [titleType, setTitletype] = useState("")
+  const [titleType, setTitletype] = useState(false)
   const dispatcher = useDispatch()
   const handleFilter = (name) => {
     dispatcher(filterTypes(name))
     setTitletype(name)
   }
-  const handleAll = () => dispatcher(resetCache())
+  const handleAll = () => {dispatcher(resetCache())
+  setTitletype(false)}
   return (
     <div className={style.sliderContainer}>
       <ul className={style.sliderMenu}>
@@ -70,11 +71,7 @@ const SliderContainer = () => {
           <FaGreaterThan className={style.arrows} />
         </li>
       </ul>
-      {titleType ? (
-        <h1 className={style.title}>This Pokemons are {titleType} Type:</h1>
-      ) : (
-        <h1 className={style.title}> Pokemon of All Types:</h1>
-      )}
+      {titleType ? <h1 className={style.title}>This Pokemons are {titleType} Type:</h1> : <h1 className={style.title}> Pokemons:</h1>}
     </div>
   )
 }

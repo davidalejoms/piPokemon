@@ -19,7 +19,7 @@ const MobileMenu = ({ toggleMobileMenuHandler }) => {
         </Link>
       </div>
       <div className={mobileMenu}>
-        <SearchField />
+        <SearchField toggleMobileMenuHandler={toggleMobileMenuHandler} />
         <Link
           className={LinkMobile}
           to="/Pokemon"

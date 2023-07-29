@@ -1,33 +1,72 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Loader from "../Loader/Loader"
 import axios from "axios"
-// import CardDetail from "../CardDetail/CardDetail"
+import CardDetail from "../CardDetail/CardDetail"
+import style from "./Detail.module.css"
 // éste componente recibe un parámetro hace una Request y renderizar lo que encuentra en una tarjeta
 const Detail = () => {
-  const { id } = useParams()
+  let { id: idOrName } = useParams()
   const [loader, setLoader] = useState(true) // manejo del loader inicia mostrandose y cuando se cargue la api se oculta
-  const [detailPokemonState, setDetailPokemonState] = useState(false)
+  const [pokemonDetail, setPokemonDetail] = useState([])
 
   useEffect(() => {
-    console.log("entro al useeffect de details")
-    const detailBegin = async () => {
-      const pokemonDetailResult = await axios.get(`http://localhost:3001/pokemons/${id}`)
-      const pokemonDetailToRender = pokemonDetailResult.data[0]
-      setDetailPokemonState(pokemonDetailToRender)
-      console.log("file: Detail.jsx:17  pokemonDetailToRender:", detailPokemonState)
-      setLoader(false) // apaga el loader
-    }
-    80430
+    if (typeof idOrName === "undefined") return
 
-    detailBegin()
-  }, [id])
+    // Function to check if the value is a number
+    const isNumeric = (value) => {
+      return /^-?\d+$/.test(value)
+    }
+    // Function to check if the value is a text (string)
+    const isText = (value) => {
+      return isNaN(value)
+    }
+
+    if (isNumeric(idOrName) || isText(idOrName)) {
+      // si es un numero o un texto se hace la request si es un texto lo pasamo a minusculas
+      if (isText(idOrName)) {
+        idOrName = idOrName.toLowerCase()
+      }
+
+      const detailBegin = async () => {
+        const pokemonReqResult = await axios.get(`http://localhost:3001/pokemons/${idOrName}`)
+        setPokemonDetail(pokemonReqResult.data)
+        setLoader(false) // apaga el loader
+      }
+      detailBegin()
+    }
+  }, [pokemonDetail.length, idOrName])
 
   return (
     <>
       {loader && <Loader />}
-      {detailPokemonState}
-      {/* {detailPokemonState && <CardDetail pokemon={detailPokemonState} />} */}
+      <div className={style.headerWrapper}>
+        <Link
+          to="/pokemon"
+          className={style.linkBack}
+        >
+          Go back to catch&apos;em all!
+        </Link>
+      </div>
+      {pokemonDetail.map((pokemon) => {
+        return (
+          <CardDetail
+            key={pokemon.Id}
+            Id={pokemon.Id}
+            Nombre={pokemon.Nombre}
+            Imagen={pokemon.Imagen}
+            ImagenAux={pokemon.ImagenAux}
+            Vida={pokemon.Vida}
+            Defensa={pokemon.Defensa}
+            Ataque={pokemon.Ataque}
+            Velocidad={pokemon.Velocidad}
+            Altura={pokemon.Altura}
+            Peso={pokemon.Peso}
+            Tipo={pokemon.Tipo}
+          />
+        )
+      })}
+      {/*  */}
     </>
   )
 }
