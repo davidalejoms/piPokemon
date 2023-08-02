@@ -1,6 +1,6 @@
 .ordersAndFiltersContainer {
-  min-width: 90%;
-  padding: 2rem 0 0 0;
+  /* min-width: 90%; */
+  padding: 1rem 0 0 0;
   margin: 0;
 }
 .ordersAndFiltersMain {
@@ -13,20 +13,19 @@
   padding: 0;
 }
 .ordersAndFiltersMain li {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: "Open Sans", sans-serif;
-    
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
 }
 .ordersAndFiltersMain li label {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--text);
-    margin: 0;
-    padding: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
 }
 .ordersAndFiltersMain button {
   width: 100px;
@@ -35,7 +34,7 @@
   color: white;
   font-size: 1.1rem;
   margin: 0.5rem;
-  padding: 0.5rem ;
+  padding: 0.5rem;
   cursor: pointer;
   border-radius: 2rem;
   text-align: center;

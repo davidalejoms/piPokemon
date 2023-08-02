@@ -10,7 +10,7 @@ import { BsFillShieldSlashFill } from "react-icons/bs"
 import { GiPowerLightning } from "react-icons/gi"
 import { BiRename } from "react-icons/bi"
 
-import newPokemonValidator from "./newPokemonValidator"
+import newPokemonValidator from "../../services/newPokemonValidatorsrv"
 
 import Loader from "../Loader/Loader"
 
@@ -74,12 +74,12 @@ const NewPokemon = () => {
     let value = e.target.value
     const files = e.target.files
 
-    // delete key for state i if empty
+    // delete key for state if the field is empty
     if (files && files.length === 0) {
       const temporalStateToRemoveFieldEmpty = { ...fields }
       delete temporalStateToRemoveFieldEmpty[name]
       setFields(temporalStateToRemoveFieldEmpty)
-      console.log("la foto fue eliminada y us valor descartado dele stado")
+      console.log("la foto fue eliminada y su valor descartado del estado")
       value = ""
     } else if (files && files.length === 1) {
       value = files[0]
@@ -128,6 +128,14 @@ const NewPokemon = () => {
 
       // opcionales
       if (fields.AuxImage) formatedFields.AuxImage = fields.AuxImage.name
+      // convertir el objeto en un formdata para enviarlo al back
+      // const formData = new FormData()
+
+      // for (const key in formatedFields) {
+      //   formData.append(key, formatedFields[key])
+      // }
+
+      // console.log("file: NewPokemon.jsx:136  formData:", formData)
 
       const endPointPokemons = import.meta.env.VITE_APIURLPOKEMONS
 
@@ -143,8 +151,6 @@ const NewPokemon = () => {
 
         const endPointPokemonsFromDB = import.meta.env.VITE_APIURLDB
         const DBFreshData = await axios.get(endPointPokemonsFromDB)
-        // pequeño remap para tipo por que viene como type y no como tipos
-        console.log("file: NewPokemon.jsx:145  DBFreshData:", DBFreshData.data)
 
         // esto trae la base de datos:
 

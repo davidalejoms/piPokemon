@@ -1,0 +1,25 @@
+/* * {
+  border: 1px solid red;
+  margin: 0.1rem;
+} */
+.mainPokemon {
+}
+.headerFiltersAndpagination {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: left;
+  gap: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .headerFiltersAndpagination {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+  }
+}

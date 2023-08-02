@@ -10,7 +10,8 @@ const SearchField = ({ toggleMobileMenuHandler }) => {
   const formRef = useRef()
   const searchPokemon = (e) => {
     e.preventDefault()
-    routerFront(`/pokemon/detail/${e.target.search.value}`)
+
+    e.target.search.value && routerFront(`/pokemon/detail/${e.target.search.value}`)
     toggleMobileMenuHandler && toggleMobileMenuHandler()
   }
   const clickSearchPokemon = () => {

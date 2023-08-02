@@ -1,23 +1,22 @@
-.paginationClass {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  flex-direction: column;
-  max-width: 80%;
-  margin: 1rem auto;
-  /* border: 2px solid red; */
-  overflow: scroll;
-}
-.numbers::-webkit-scrollbar {
-  display: none;
-}
 .numbers {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  /* align-items: center; */
   flex-direction: row;
   max-width: 100%;
+  /* background: red; */
+  overflow-x: scroll;
   /* z-index: 50; */
+  padding: 1.5rem 0 0.5rem 0;
+  margin: 0 auto;
+}
+/* style scrollbar to look green and iis borders none */
+.numbers::-webkit-scrollbar {
+  background-color: #ffffff; /* Set the background color of the thumb */
+}
+.numbers::-webkit-scrollbar-thumb {
+  background-color: var(--primary); /* Set the background color of the thumb */
+  border-radius: 999px;
 }
 .pagButton {
   background-color: var(--white);
@@ -29,6 +28,7 @@
   margin: 0 4px;
   border-radius: 4px;
   transition: 0.3s;
+  +background: #fff;
 }
 .pagButton:hover {
   background-color: var(--primary);
@@ -37,4 +37,22 @@
 .activepage {
   background-color: var(--primary);
   color: var(--white);
+}
+@media screen and (max-width: 768px) {
+  .numbers::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pagButton {
+    border-radius: 100%;
+    background-color: var(--white);
+    border: 1px solid #c1c1c1;
+    color: var(--text);
+    padding: 0.5rem 0.7rem;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 4px;
+    transition: 0.3s;
+    +background: #fff;
+  }
 }

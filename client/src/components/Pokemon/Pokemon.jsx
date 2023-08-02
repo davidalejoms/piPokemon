@@ -7,7 +7,7 @@ import SliderContainer from "./SliderContainer/SliderContainer"
 import Pagination from "../Pagination/Pagination"
 import GridContainer from "../GridContainer/GridContainer"
 import { loadApi, loadTypes /* , loadFront */ } from "../../redux/actions"
-
+import style from "./Pokemon.module.css"
 const Pokemon = () => {
   const [loader, setLoader] = useState(true) // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
   const dispatch = useDispatch() // para mandar cosas al estado global
@@ -41,8 +41,12 @@ const Pokemon = () => {
   return (
     <>
       {loader && <Loader />}
-      <Pagination order={order} />
-      <OrdersAndFilters forceOrder={forceOrder} />
+
+      <div className={style.headerFiltersAndpagination}>
+        <OrdersAndFilters forceOrder={forceOrder} />
+        <Pagination order={order} />
+      </div>
+
       <SliderContainer />
 
       <GridContainer

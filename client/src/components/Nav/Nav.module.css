@@ -1,5 +1,5 @@
-.nav{
-  margin:0
+.nav {
+  margin: 0;
 }
 .MenuIcon {
   display: none;
@@ -7,6 +7,7 @@
 .logoMobile {
   display: none;
 }
+
 @media (max-width: 768px) {
   .MenuIcon {
     display: block;

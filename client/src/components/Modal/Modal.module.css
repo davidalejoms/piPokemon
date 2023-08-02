@@ -1,0 +1,155 @@
+.modalcontainer * {
+  /* background: rgb(226, 226, 226); */
+  /* border: 1px solid red; */
+  /* padding: 1px; */
+  /* margin: 1px; */
+}
+
+.modalcontainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh;
+  background-color: rgba(0, 228, 141, 0.57);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  font-family: "roboto condensed", sans-serif;
+}
+.modal {
+  position: absolute;
+  background-color: white;
+  width: 40%;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+}
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  align-items: center;
+}
+.titleContainer {
+  text-align: center;
+  font-size: 2rem;
+}
+.closeButtonContainer {
+  position: absolute;
+  font-size: 2rem;
+  right: 1rem;
+  top: 1rem;
+}
+.closeButtonContainer:hover {
+  border-radius: 999px;
+  cursor: pointer;
+  color: red;
+  transform: scale(1.1) translate(-0.1rem, -0.1rem));
+  transition: all 0.2s ease-in-out;
+  padding: 0.2rem 0.2rem 0rem 0.2rem;
+}
+.contentModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.imgModal img {
+  max-width: 100%;
+}
+.textContentModal {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.text {
+}
+.buttonsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.buttonsWrapper button {
+  width: 100%;
+  padding: 0.8rem 1.4rem;
+  border-radius: 100px;
+  border: none;
+  font-weight: 400;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--primary);
+  background-color: var(--accent);
+  color: var(--white);
+  /* align icons */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.icon {
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.buttonOk button {
+  background-color: var(--primary);
+}
+.buttonOption {
+}
+
+.buttonCancel button {
+  background-color: red;
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+  .modalcontainer {
+    z-index: 10000;
+  }
+  .modal {
+    width: 85%;
+    padding: 1rem;
+    height: 90vh;
+  }
+  .contentModal {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .textContentModal {
+    max-width: 100%;
+  }
+  .imgModal {
+    text-align: center;
+  }
+  .imgModal img {
+    max-width: 60%;
+  }
+  .buttonsWrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .buttonsWrapper button {
+    width: 200px;
+  }
+}

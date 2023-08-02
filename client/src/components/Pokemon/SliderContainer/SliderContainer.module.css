@@ -9,17 +9,23 @@
 .sliderMenu {
   display: flex;
   flex-direction: row;
-  max-width: 100%;
+  max-width: 95%;
   overflow-x: scroll;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
   scroll-behavior: smooth;
   margin: 0.5rem 0;
+  padding: 0;
   /* slide scroll to the right */
-  scroll-snap-type: x mandatory;
+  /* scroll-snap-type: x mandatory; */
 }
 .sliderMenu::-webkit-scrollbar {
-  display: none;
+  background-color: white;
 }
+.sliderMenu::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 999px;
+}
+
 .sliderMenu li {
   list-style: none;
 }
@@ -50,7 +56,7 @@
   display: none;
 }
 .title {
-  margin: 2.5rem 0;
+  margin: 2.7rem 0;
   color: var(--text);
 }
 
@@ -61,4 +67,10 @@
     font-weight: bolder;
     color: var(--text);
   }
+  .sliderMenu::-webkit-scrollbar {
+display: none;  }
+.title {
+  margin: 1rem 0;
+  color: var(--text);
+}
 }

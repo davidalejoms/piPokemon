@@ -1,6 +1,6 @@
 .searchField input {
   padding: 0.5rem 1rem 0.5rem 3rem;
-  background-color: beige;
+  background-color: var(--secondary);
   font-size: 1.2rem;
   border-radius: 999px;
   width: 205px;

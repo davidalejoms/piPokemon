@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 
 import { useEffect, useState } from "react"
-import { pagButton, paginationClass, numbers, activepage } from "./Pagination.module.css"
+import { pagButton, numbers, activepage } from "./Pagination.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { loadFront } from "../../redux/actions"
 
@@ -26,28 +26,26 @@ const Pagination = ({ order }) => {
   }, [cacheData, currentPage, dispatch, itemsPerPage, order])
 
   return (
-    <div className={paginationClass}>
-      <div className={numbers}>
-        {/* Array.from(Array(totalPages)) crea un array de 0 a totalPages siendo este un numero. 
+    <div className={numbers}>
+      {/* Array.from(Array(totalPages)) crea un array de 0 a totalPages siendo este un numero. 
     tambien se puede Array.from({length: totalPages})
     es raro y nuevo pero funciona
     
     */}
-        {Array.from(Array(pages)).map((_, index) => {
-          let pageNumber = index + 1
-          const buttonClass = pageNumber === currentPage ? `${pagButton} ${activepage}` : `${pagButton}`
-          return (
-            <button
-              onClick={pageHandler}
-              key={pageNumber}
-              value={pageNumber}
-              className={buttonClass}
-            >
-              {pageNumber}
-            </button>
-          )
-        })}
-      </div>
+      {Array.from(Array(pages)).map((_, index) => {
+        let pageNumber = index + 1
+        const buttonClass = pageNumber === currentPage ? `${pagButton} ${activepage}` : `${pagButton}`
+        return (
+          <button
+            onClick={pageHandler}
+            key={pageNumber}
+            value={pageNumber}
+            className={buttonClass}
+          >
+            {pageNumber}
+          </button>
+        )
+      })}
     </div>
   )
 }

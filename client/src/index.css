@@ -1,10 +1,10 @@
 @import url("https://fonts.cdnfonts.com/css/pokemon-solid");
 :root {
-  --primary: #00476d;
-  --secondary: #f6f0ed;
+  --primary: #49803e;
+  --secondary: #f5f5f5;
   --text: #474747;
   --white: #ffffff;
-  --accent: #6769ff;
+  --accent: #7838f8;
 }
 html {
   padding: 0rem;
@@ -13,6 +13,8 @@ html {
 }
 body {
   margin: 0rem;
+  /* import roboto */
+  font-family: "roboto condensed", sans-serif;
 }
 html h1 {
   font-family: "pokemon-solid", sans-serif;
