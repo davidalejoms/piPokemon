@@ -1,6 +1,8 @@
 export const LOAD_API = "LOAD_API" // carga todo desde el api al reducer en showInFront
 export const LOAD_FRONT = "LOAD_FRONT" // carga todo desde el api al reducer en showInFront
 export const LOAD_DATABASE = "LOAD_DATABASE" // desde el api en el enponit base de datos al reducer en databasePokemons
+export const LOAD_DATABASE_TO_CACHE = "LOAD_DATABASE_TO_CACHE" // desde el api en el enponit base de datos al reducer en databasePokemons
+export const LOAD_API_TO_CACHE = "LOAD_API_TO_CACHE" // desde el api en el enponit base de datos al reducer en databasePokemons
 export const LOAD_TYPES = "LOAD_TYPES" // desde el api en el enponit types al reducer en typesOfPokemons
 export const FILTER_TYPES = "FILTER_TYPES" // desde reducer DEVOLVER POR TIPO
 export const RESET_CACHE = "RESET_CACHE" // desde reducer DEVOLVER POR TIPO
@@ -40,4 +42,13 @@ export const orderByPowerAsc = (type) => {
 }
 export const orderByPowerDesc = (type) => {
   return { type: ORDER_BY_POWER_DESC, payload: type }
+}
+export const loadDataBase = (pokemons) => {
+  return { type: LOAD_DATABASE, payload: pokemons }
+}
+export const loadDataBaseToCache = (pokemons) => {
+  return { type: LOAD_DATABASE_TO_CACHE, payload: pokemons }
+}
+export const loadAPITocache = () => {
+  return { type: LOAD_API_TO_CACHE, payload: null }
 }

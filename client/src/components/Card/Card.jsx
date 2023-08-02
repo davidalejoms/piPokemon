@@ -17,7 +17,7 @@ import { GiPowerLightning } from "react-icons/gi"
 import { GiLifeBar } from "react-icons/gi"
 import { BsFillShieldSlashFill } from "react-icons/bs"
 import { Link } from "react-router-dom"
-function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura, Peso, Tipo, Ataque }) {
+function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura, Peso, Types, Ataque }) {
   return (
     // disable all link styles
     <Link
@@ -37,13 +37,13 @@ function Card({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura,
           alt={Nombre}
         />
         <h2>
-                N°{Id} {Nombre}
+          N°{Id} {Nombre}
         </h2>
         <h2>Type: </h2>
 
         <ul>
           <div className={typeWrapper}>
-            {Tipo.map((t, i) => {
+            {Types.map((t, i) => {
               return (
                 <li key={i}>
                   <button className={t.tipo}>
@@ -121,6 +121,6 @@ Card.propTypes = {
   Velocidad: PropTypes.number.isRequired,
   Altura: PropTypes.number.isRequired,
   Peso: PropTypes.number.isRequired,
-  Tipo: PropTypes.array.isRequired,
+  Types: PropTypes.array.isRequired,
 }
 export default Card

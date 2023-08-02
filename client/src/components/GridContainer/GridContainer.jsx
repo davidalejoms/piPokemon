@@ -20,7 +20,7 @@ function GridContainer(props) {
           Velocidad={pokemon.Velocidad}
           Altura={pokemon.Altura}
           Peso={pokemon.Peso}
-          Tipo={pokemon.Tipo}
+          Types={pokemon.Types}
         />
       ))}
     </div>
@@ -40,7 +40,7 @@ GridContainer.propTypes = {
       Velocidad: PropTypes.number.isRequired,
       Altura: PropTypes.number.isRequired,
       Peso: PropTypes.number.isRequired,
-      Tipo: PropTypes.array.isRequired,
+      Types: PropTypes.array.isRequired,
     })
   ).isRequired,
   loader: PropTypes.bool.isRequired,

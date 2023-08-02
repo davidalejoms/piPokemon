@@ -18,12 +18,16 @@ const SliderContainer = () => {
   })
   const [titleType, setTitletype] = useState(false)
   const dispatcher = useDispatch()
+
   const handleFilter = (name) => {
     dispatcher(filterTypes(name))
     setTitletype(name)
   }
-  const handleAll = () => {dispatcher(resetCache())
-  setTitletype(false)}
+  const handleAll = () => {
+    dispatcher(resetCache())
+    setTitletype(false)
+  }
+
   return (
     <div className={style.sliderContainer}>
       <ul className={style.sliderMenu}>
@@ -50,17 +54,17 @@ const SliderContainer = () => {
           return (
             <li key={i}>
               <div
-                onClick={() => handleFilter(type.Nombre)}
-                className={`${type.Nombre} ${style.typeButtons}`} // asi para pasale dentro de ciclo y que llegue sin id unicos por module.css
-                // className={type.Nombre}
+                onClick={() => handleFilter(type.tipo)}
+                className={`${type.tipo} ${style.typeButtons}`} // asi para pasale dentro de ciclo y que llegue sin id unicos por module.css
+                // className={type.tipo}
               >
                 <div className={style.iconWrapper}>
                   <img
-                    // className={type.Nombre}
-                    src={`/src/assets/icons/${type.Nombre}.svg`}
+                    // className={type.tipo}
+                    src={`/src/assets/icons/${type.tipo}.svg`}
                     alt=""
                   />
-                  <div>{type.Nombre}</div>
+                  <div>{type.tipo}</div>
                 </div>
               </div>
             </li>

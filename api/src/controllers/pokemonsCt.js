@@ -1,6 +1,6 @@
 const axios = require("axios")
-const { Pokemon } = require("../db.js")
-
+const { Pokemon, Types } = require("../db.js")
+const loadTypes = require("../utils/loadTypes.js")
 const getPokelist = async () => {
   //hasta la fecha de este algoritmo hay 1281 pokemones
   try {
@@ -24,7 +24,7 @@ const getPokelist = async () => {
         Velocidad: processedPokemon.data.stats[5].base_stat,
         Altura: processedPokemon.data.height,
         Peso: processedPokemon.data.weight,
-        Tipo: processedPokemon.data.types.map((type) => {
+        Types: processedPokemon.data.types.map((type) => {
           return { id: type.slot, tipo: type.type.name }
         }),
       }
@@ -93,15 +93,50 @@ const getPokemonByName = async (name) => {
     throw new Error("Pokemon not found")
   }
 }
-const newPokemon = async (ID, Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso) => {
+
+const newPokemon = async (Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso, Tipos) => {
+  console.log(
+    "==============================file: pokemonsCt.js:98 \n Nombre",
+    Nombre,
+    " \n Imagen",
+    Imagen,
+    " \n ImagenAux",
+    ImagenAux,
+    " \n Vida",
+    Vida,
+    " \n Ataque",
+    Ataque,
+    " \n Defensa",
+    Defensa,
+    " \n Velocidad",
+    Velocidad,
+    " \n Altura",
+    Altura,
+    " \n Peso",
+    Peso,
+    " \n Tipos",
+    Tipos
+  )
   try {
-    if (!ID || !Nombre || !Imagen || !Vida || !Ataque || !Defensa) {
+    // verificar que la tabla tipos tenga registros, si no los tiene hacer request a la api y cargarlos
+    const types = await Types.findAll()
+    if (types.length === 0) {
+      await loadTypes()
+    }
+
+    if (!Nombre || !Imagen || !Vida || !Ataque || !Defensa || !Tipos) {
       throw new Error("==============Error de validacion de datos:,")
     } else {
-      return await Pokemon.create({ ID, Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso })
+      console.log("file: pokemonsCt.js:131  Nombre:", Nombre)
+      const creation = await Pokemon.create({ Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso })
+      // add field in related table methos add in sequelize
+      creation.addTypes(Tipos)
+      //mandar el resultado con sus campos relacionados apra mostrart en el exito
+      return creation
     }
   } catch (error) {
-    throw new Error(" Missing dataerror on post create error: \n  " + error.message)
+    throw new Error(" Missing dataerror on post create error:  " + error.message)
   }
 }
+
 module.exports = { getPokelist, getPokemonDetail, getPokemonByName, newPokemon }

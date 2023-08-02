@@ -7,10 +7,11 @@ module.exports = (sequelize) => {
     "pokemon",
     {
       //pokemon.id
-      ID: {
+      Id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         primaryKey: true,
+        autoIncrement: true,
       },
       //.name
       Nombre: {
@@ -25,7 +26,7 @@ module.exports = (sequelize) => {
       },
       ImagenAux: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       /* 
 pokemon.stats[0].base_stat
@@ -83,15 +84,15 @@ stats: [
     },
     */,
       Velocidad: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       //pokemon.height
       Altura: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       // pokemon.weight
       Peso: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
     },
     {

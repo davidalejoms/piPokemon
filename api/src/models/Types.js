@@ -19,21 +19,23 @@ module.exports = (sequelize) => {
     },
   ],
     */
-  sequelize.define("Types", {
-    id: {
-      type: DataTypes.INTEGER,
-      allownull: false,
-      primaryKey: true,
-      autoIncrement: true,
+  sequelize.define(
+    "Types",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        allownull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      tipo: {
+        type: DataTypes.STRING,
+        allownull: false,
+      },
     },
-    Nombre: {
-      type: DataTypes.STRING,
-      allownull: false,
-    },
-  },
-  {
-    timestamps: false,
-  }
+    {
+      timestamps: false,
+    }
   )
 }
 

@@ -15,13 +15,15 @@ import newPokemonValidator from "./newPokemonValidator"
 import Loader from "../Loader/Loader"
 
 import { useEffect, useMemo, useState } from "react"
-import { loadTypes } from "../../redux/actions"
+import { loadDataBase, loadTypes } from "../../redux/actions"
 import axios from "axios"
+
 const NewPokemon = () => {
   //cargar tipos por si no estan cargados inicio
   const alltypes = useSelector((state) => state.typesOfPokemons) // el frontdata es el estado global de shownInFront que se pinta en pantalla
   const dispatch = useDispatch() // para mandar cosas al estado global
   const [loader, setLoader] = useState(true) // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
+
   useEffect(() => {
     // si no hay nada en el estado global se carga la api
     if (alltypes.length === 0) {
@@ -68,16 +70,88 @@ const NewPokemon = () => {
   const [fields, setFields] = useState({})
   const [errors, setErrors] = useState({})
   const handleChange = (e) => {
-    setFields({ ...fields, [e.target.name]: e.target.value })
     const name = e.target.name
-    const value = e.target.value
+    let value = e.target.value
     const files = e.target.files
-    newPokemonValidator(name, value, files, setErrors)
+
+    // delete key for state i if empty
+    if (files && files.length === 0) {
+      const temporalStateToRemoveFieldEmpty = { ...fields }
+      delete temporalStateToRemoveFieldEmpty[name]
+      setFields(temporalStateToRemoveFieldEmpty)
+      console.log("la foto fue eliminada y us valor descartado dele stado")
+      value = ""
+    } else if (files && files.length === 1) {
+      value = files[0]
+    }
+
+    setFields({ ...fields, [name]: value })
+
+    newPokemonValidator({ ...fields, [name]: value }, setErrors)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    errors.length !== 0 && alert("Please check the form")
+    const lastvalidation = {
+      // if fields.fieldname is not empty then fields.fieldname.value else ''
+      Type: (() => ("Type" in fields ? fields.Type : ""))(),
+      Name: (() => ("Name" in fields ? fields.Name : ""))(),
+      Image: (() => ("Image" in fields ? fields.Image : ""))(),
+      // AuxImage: (() => ("AuxImage" in fields ? fields.AuxImage : ""))(),//not mandatory doesnt matter if exist or not in fields
+      Defense: (() => ("Defense" in fields ? fields.Defense : ""))(),
+      Speed: (() => ("Speed" in fields ? fields.Speed : ""))(),
+      Life: (() => ("Life" in fields ? fields.Life : ""))(),
+      Height: (() => ("Height" in fields ? fields.Height : ""))(),
+      Weight: (() => ("Weight" in fields ? fields.Weight : ""))(),
+      Attack: (() => ("Attack" in fields ? fields.Attack : ""))(),
+    }
+
+    newPokemonValidator(lastvalidation, setErrors)
+
+    if (!(Object.keys(fields).length >= 9 && Object.keys(errors).length === 0))
+      alert("no se puede enviar") //TODO: modal para mostrar los errores de validacion
+    else {
+      //mapear el fomrulario al formato de la base de datos por si el contato algun dia cambia
+      //obligatorios:
+      const formatedFields = {
+        Nombre: fields.Name,
+        Imagen: fields.Image.name,
+        Vida: fields.Life,
+        Ataque: fields.Attack,
+        Defensa: fields.Defense,
+        Velocidad: fields.Speed,
+        Altura: fields.Height,
+        Peso: fields.Weight,
+        Tipos: [Number(fields.Type)], // como segudo elemento del array el type2 si existe
+      }
+      // console.log("file: NewPokemon.jsx:125  formatedFields:", formatedFields)
+
+      // opcionales
+      if (fields.AuxImage) formatedFields.AuxImage = fields.AuxImage.name
+
+      const endPointPokemons = import.meta.env.VITE_APIURLPOKEMONS
+
+      const newPokemonsTODB = await axios.post(endPointPokemons, formatedFields, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      // console.log("file: NewPokemon.jsx:107  newPokemonsTODB:", newPokemonsTODB)
+      if (newPokemonsTODB.status === 200) {
+        //TODO: hacer un modal para mostrar el resultado de la creacion del pokemon
+        alert("Pokemon creado")
+
+        const endPointPokemonsFromDB = import.meta.env.VITE_APIURLDB
+        const DBFreshData = await axios.get(endPointPokemonsFromDB)
+        // pequeño remap para tipo por que viene como type y no como tipos
+        console.log("file: NewPokemon.jsx:145  DBFreshData:", DBFreshData.data)
+
+        // esto trae la base de datos:
+
+        dispatch(loadDataBase(DBFreshData.data))
+      } else alert("no se pudo crear el pokemon")
+      //request post para database
+    }
   }
 
   // validador de datos fin
@@ -88,6 +162,21 @@ const NewPokemon = () => {
       <div className={styles.componentContainer}>
         <h1>Create Your Own Pokemon</h1>
         <div className={styles.elementsWrapper}>
+          {fields.Image && (
+            <div className={styles.prevwrapper}>
+              <img
+                src={fields.Image.name ? URL.createObjectURL(fields.Image) : ""}
+                alt={fields.Image}
+              />
+
+              {fields.AuxImage && fields.Image && (
+                <img
+                  src={fields.AuxImage.name ? URL.createObjectURL(fields.AuxImage) : ""}
+                  alt={fields.AuxImage}
+                />
+              )}
+            </div>
+          )}
           <form onSubmit={handleSubmit}>
             <div className={styles.rowdataAll}>
               <div
@@ -102,15 +191,16 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Type"
                   id=""
+                  // value={fields.Type}
                 >
                   <option value="">Choose one</option>
                   {types.map((t, i) => {
                     return (
                       <option
                         key={i}
-                        value={t.Nombre}
+                        value={t.id}
                       >
-                        {t.Nombre}
+                        {t.tipo}
                       </option>
                     )
                   })}
@@ -125,6 +215,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Name"
                   type="text"
+                  // value={fields.Name}
                 />
                 {errors.Name && <p className={styles.errorMessage}>{errors.Name}</p>}
               </div>
@@ -136,6 +227,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Image"
                   type="file"
+                  // value={fields.Image}
                 />
                 {errors.Image && <p className={styles.errorMessage}>{errors.Image}</p>}
               </div>
@@ -147,6 +239,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="AuxImage"
                   type="file"
+                  // value={fields.AuxImage}
                 />
                 {errors.AuxImage && <p className={styles.errorMessage}>{errors.AuxImage}</p>}
               </div>
@@ -161,6 +254,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Defense"
                   type="text"
+                  // value={fields.Defense}
                 />
                 {errors.Defense && <p className={styles.errorMessage}>{errors.Defense}</p>}
               </div>
@@ -174,6 +268,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Life"
                   type="text"
+                  // value={fields.Life}
                 />
                 {errors.Life && <p className={styles.errorMessage}>{errors.Life}</p>}
               </div>
@@ -189,6 +284,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Speed"
                   type="text"
+                  // value={fields.Speed}
                 />
                 {errors.Speed && <p className={styles.errorMessage}>{errors.Speed}</p>}
               </div>
@@ -201,6 +297,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Height"
                   type="text"
+                  // value={fields.Height}
                 />
                 {errors.Height && <p className={styles.errorMessage}>{errors.Height}</p>}
               </div>
@@ -215,6 +312,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Weight"
                   type="text"
+                  // value={fields.Weight}
                 />
                 {errors.Weight && <p className={styles.errorMessage}>{errors.Weight}</p>}
               </div>
@@ -228,6 +326,7 @@ const NewPokemon = () => {
                   onChange={handleChange}
                   name="Attack"
                   type="text"
+                  // value={fields.Attack}
                 />
                 {errors.Attack && <p className={styles.errorMessage}>{errors.Attack}</p>}
               </div>

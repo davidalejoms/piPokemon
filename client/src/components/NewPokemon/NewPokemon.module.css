@@ -135,6 +135,15 @@ style input type="file" .datain input[type="file"] {
   transition: all 0.3s ease-in-out;
 }
 
+.prevwrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.prevwrapper img {
+  max-height: 30vh;
+}
+
 .pokemonWrapper {
   display: flex;
   justify-content: center;

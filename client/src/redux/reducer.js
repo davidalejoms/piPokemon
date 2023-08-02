@@ -1,10 +1,12 @@
 import {
   LOAD_API,
+  LOAD_FRONT,
   LOAD_DATABASE,
+  LOAD_DATABASE_TO_CACHE,
+  LOAD_API_TO_CACHE,
   LOAD_TYPES,
   FILTER_TYPES,
   RESET_CACHE,
-  LOAD_FRONT,
   ORDER_A_Z,
   ORDER_Z_A,
   ORDER_BY_POWER_ASC,
@@ -33,6 +35,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       const end = payload * 12
       return { ...state, shownInFront: state.cache.slice(start, end) }
     }
+    case LOAD_DATABASE: {
+      return { ...state, databasePokemons: payload }
+    }
+    case LOAD_DATABASE_TO_CACHE: {
+      return { ...state, cache: state.databasePokemons }
+    }
+
+    case LOAD_API_TO_CACHE: {
+      return { ...state, cache: state.allPokemons }
+    }
 
     case LOAD_TYPES: {
       return {
@@ -44,7 +56,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case FILTER_TYPES: {
       const byType = []
       state.allPokemons.forEach((filtrado) => {
-        filtrado.Tipo.forEach((tipo) => {
+        filtrado.Types.forEach((tipo) => {
           if (tipo.tipo === payload) {
             byType.push(filtrado)
           }
@@ -109,10 +121,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
       })
 
       return { ...state, cache: orderHPDesc }
-    }
-
-    case LOAD_DATABASE: {
-      return { ...state }
     }
 
     case FILTER_BY_TYPE: {

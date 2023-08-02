@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const { getPokelist, getPokemonDetail, getPokemonByName, newPokemon } = require("../controllers/pokemonsCt")
+const { getPokelist, getPokemonDetail, getPokemonByName, newPokemon, getPokemonFromDB } = require("../controllers/pokemonsCt")
 pokemonsHandler = Router()
 
 pokemonsHandler.get("/", async (req, res) => {
@@ -43,18 +43,28 @@ pokemonsHandler.get("/:id", async (req, res) => {
 // -  Toda la información debe ser recibida por body.
 // -  Debe crear un pokemon en la base de datos, y este debe estar relacionado con sus tipos indicados (debe poder relacionarse al menos con dos).
 
-//todo recibir al menos dos tipos
 pokemonsHandler.post("/", async (req, res) => {
   try {
-    const { ID, Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso } = req.body
+    const { Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso, Tipos } = req.body
 
-    const newPokemonRes = await newPokemon(ID, Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso)
+    const newPokemonRes = await newPokemon(Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso, Tipos)
+
     res.status(200).json(newPokemonRes)
   } catch (error) {
-    res.status(400).json({ error: ` on post pokemon: \n ${error.message}` })
+    res.status(400).json({ error: ` on post pokemon: ${error.message}` })
 
     //avoid express to crash on error
   }
 })
+
+// pokemonsHandler.get("/", async (req, res) => {
+//   console.log("estyo en db pokenon")
+//   // try {
+//   //   const allPokemons = await getPokemonFromDB()
+//   //   res.status(200).json(allPokemons)
+//   // } catch (error) {
+//   //   res.status(400).json({ error: ` on get /db: \n ${error.message}` })
+//   // }
+// })
 
 module.exports = pokemonsHandler

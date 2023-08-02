@@ -1,0 +1,4 @@
+SELECT *
+FROM pokemons;
+SELECT *
+from pokemon_type;

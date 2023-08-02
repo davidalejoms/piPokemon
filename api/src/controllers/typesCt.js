@@ -7,7 +7,7 @@ const getAllTypes = async () => {
     const contentTypeTester = await Types.findAll()
     if (contentTypeTester.length === 0) {
       const apiTypes = await axios("https://pokeapi.co/api/v2/type")
-      apiTypes.data.results.forEach((type) => typesLocal.push({ Nombre: type.name }))
+      apiTypes.data.results.forEach((type) => typesLocal.push({ tipo: type.name }))
       await Types.bulkCreate(typesLocal)
     }
 

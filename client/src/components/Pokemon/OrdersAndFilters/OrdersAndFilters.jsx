@@ -2,7 +2,7 @@
 import PropTypes from "prop-types"
 import { useState } from "react"
 import { ordersAndFiltersContainer, ordersAndFiltersMain } from "./OrdersAndFilters.module.css"
-import { orderAZ, orderZA, orderByPowerAsc, orderByPowerDesc } from "../../../redux/actions"
+import { orderAZ, orderZA, orderByPowerAsc, orderByPowerDesc, loadDataBaseToCache, loadAPITocache } from "../../../redux/actions"
 import { useDispatch } from "react-redux"
 
 const OrdersAndFilters = ({ forceOrder }) => {
@@ -27,12 +27,17 @@ const OrdersAndFilters = ({ forceOrder }) => {
     powerOrder === "DESC" && dispatcher(orderByPowerDesc())
     forceOrder()
   }
-
+  // manejador de funete de datos, si es api entonces se cambia el origen de la data a la api, si es database se cambia a database
   const [origin, setOrigin] = useState("Database")
   const originHandler = () => {
     origin === "Database" && setOrigin("API") //estos son para cambiar el icono
     origin === "API" && setOrigin("Database") //estos son para cambiar el icono
+
+    //estos son para cambiar el icono // estan al reves para que se muestre el valor del boton acorde con lo que pasa en pantalla
+    origin === "API" && dispatcher(loadDataBaseToCache()) 
+    origin === "Database" && dispatcher(loadAPITocache()) //estos son para cambiar el icono
   }
+
   return (
     <div className={ordersAndFiltersContainer}>
       <ul className={ordersAndFiltersMain}>
