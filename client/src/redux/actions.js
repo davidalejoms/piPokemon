@@ -13,6 +13,8 @@ export const ORDER_Z_A = "ORDER_Z_A" // ordena el reducer en showInFront de la Z
 export const ORDER_BY_POWER_ASC = "ORDER_BY_POWER_ASC" //ordena el reducer en showInFront por poder de la menor a la mayor
 export const ORDER_BY_POWER_DESC = "ORDER_BY_POWER_DESC" //ordena el reducer en showInFront por poder de la mayor a la menor
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE" //filtra el reducer en showInFront por tipo de pokemon
+export const SET_GLOBAL_ORIGIN = "SET_GLOBAL_ORIGIN" //el orgien global de la data se modifica con esta funcion
+export const SET_GLOBAL_LOADER = "SET_GLOBAL_LOADER" //el orgien global de la data se modifica con esta funcion
 
 export const loadApi = () => {
   return async (dispatchFromComponents) => {
@@ -30,6 +32,7 @@ export const loadTypes = () => {
   return async (dispatchFromComponents) => {
     const endpointTypes = import.meta.env.VITE_APIURLTYPES
     const responseTypes = await axios.get(endpointTypes)
+
     return dispatchFromComponents({ type: LOAD_TYPES, payload: responseTypes.data })
   }
 }
@@ -55,7 +58,7 @@ export const orderByPowerDesc = (type) => {
 export const loadDataBase = () => {
   return async (dispatchFromComponents) => {
     const endPointPokemonsFromDB = import.meta.env.VITE_APIURLDB
-    const DBFreshData = await axios.get(endPointPokemonsFromDB)
+    const DBFreshData = await axios.get(`${endPointPokemonsFromDB}/all`)
     return dispatchFromComponents({ type: LOAD_DATABASE, payload: DBFreshData.data }) // esto carga la base de datos en el reducer
   }
 }
@@ -65,4 +68,10 @@ export const loadDataBaseToCache = () => {
 export const loadAPITocache = () => {
   return { type: LOAD_API_TO_CACHE, payload: null }
 }
-//TODO: funcion para cambiar el origen de la data esto afectará los ultimos cambios de la data en el reducer y los filtros de tipo pero val la pena por que simplifica el codigo y lo hace mas escalable
+//actios para estados globales auxiliares
+export const setGlobalOrigin = (value) => {
+  return { type: SET_GLOBAL_ORIGIN, payload: value }
+}
+export const setGlobalLoader = (value) => {
+  return { type: SET_GLOBAL_LOADER, payload: value }
+}

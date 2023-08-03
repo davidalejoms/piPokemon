@@ -41,7 +41,7 @@ const getPokemonDetail = async (id) => {
     const pokemonDetail = await axios(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const resultZero = []
     resultZero[0] = pokemonDetail.data
-    // console.log(resultZero)
+
     const processedPokemon = resultZero.map((processedPokemon) => {
       return {
         Id: processedPokemon.id,
@@ -61,9 +61,10 @@ const getPokemonDetail = async (id) => {
     })
     return processedPokemon
   } catch (error) {
-    throw new Error("Api Error On /:id ->Detail by id ")
+    throw new Error("Api Error On /:id ->Detail by id " + error.message)
   }
 }
+
 const getPokemonByName = async (name) => {
   try {
     console.log(name)

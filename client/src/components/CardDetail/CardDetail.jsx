@@ -19,17 +19,18 @@ import { BsSpeedometer2 } from "react-icons/bs"
 import { GiPowerLightning } from "react-icons/gi"
 import { GiLifeBar } from "react-icons/gi"
 import { BsFillShieldSlashFill } from "react-icons/bs"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { filterTypes } from "../../redux/actions"
 import { useNavigate } from "react-router"
 function CardDetail({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, Altura, Peso, Tipo, Ataque }) {
   const dispatcher = useDispatch()
   const navigator = useNavigate()
 
+  const { origin } = useSelector((state) => state.auxGlobalStates)
   const toTypeviewSender = (type) => {
     // cambia el cache y envia a la vista de grilla apra esa categoria
 
-    dispatcher(filterTypes(type, "API"))
+    dispatcher(filterTypes(type, origin))
     navigator("/pokemon")
   }
 

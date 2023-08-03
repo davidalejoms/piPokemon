@@ -12,6 +12,8 @@ import {
   ORDER_BY_POWER_ASC,
   ORDER_BY_POWER_DESC,
   FILTER_BY_TYPE,
+  SET_GLOBAL_ORIGIN,
+  SET_GLOBAL_LOADER,
 } from "../redux/actions" // las acctions se importan en el reducer
 const initialState = {
   allPokemons: [], // carga inicial se guarda aqui
@@ -19,7 +21,7 @@ const initialState = {
   cache: [], // todo antes de mostrarse se guarda aqui
   shownInFront: [], // aqui se guarda la pagina actual que se muestra en la app
   databasePokemons: [], // aqui se guardan los pokemones de la base de datos
-  // origin: "API", // aqui se guarda el origen de la data que se muestra en la app
+  auxGlobalStates: { origin: "API", loader: true }, // aqui se guarda el origen de la data que se muestra en la app
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -133,6 +135,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, cache: orderHPDesc }
     }
 
+    case SET_GLOBAL_ORIGIN: {
+      return { ...state, auxGlobalStates: { ...state.auxGlobalStates, origin: payload } }
+    }
+    case SET_GLOBAL_LOADER: {
+      return { ...state, auxGlobalStates: { ...state.auxGlobalStates, loader: payload } }
+    }
     case FILTER_BY_TYPE: {
       return { ...state }
     }

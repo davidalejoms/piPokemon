@@ -15,26 +15,29 @@ import newPokemonValidator from "../../services/newPokemonValidatorsrv"
 import Loader from "../Loader/Loader"
 
 import { useEffect, useMemo, useState } from "react"
-import { loadDataBase, loadTypes } from "../../redux/actions"
+import { loadDataBase, loadTypes, setGlobalLoader } from "../../redux/actions"
 import axios from "axios"
 
 const NewPokemon = () => {
   //cargar tipos por si no estan cargados inicio
   const alltypes = useSelector((state) => state.typesOfPokemons) // el frontdata es el estado global de shownInFront que se pinta en pantalla
   const dispatch = useDispatch() // para mandar cosas al estado global
-  const [loader, setLoader] = useState(true) // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
+  // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
+  const { loader } = useSelector((state) => state.auxGlobalStates) // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
 
   useEffect(() => {
+    dispatch(setGlobalLoader(true)) // prende el loader
     // si no hay nada en el estado global se carga la api
     if (alltypes.length === 0) {
       const begin = async () => {
         await dispatch(loadTypes(dispatch))
-        setLoader(false) // apaga el loader
+
+        dispatch(setGlobalLoader(false)) // apaga el loader
       }
       begin()
     } else {
       // si ya esta cargado el estado global solo se apaga el loader
-      setLoader(false) // apaga el loader
+      dispatch(setGlobalLoader(false)) // apaga el loader
     }
   }, [dispatch, alltypes.length])
   //cargar tipos por si no estan cargados fin
@@ -102,6 +105,8 @@ const NewPokemon = () => {
       Weight: (() => ("Weight" in fields ? fields.Weight : ""))(),
       Attack: (() => ("Attack" in fields ? fields.Attack : ""))(),
     }
+    
+    console.log(lastvalidation)
 
     newPokemonValidator(lastvalidation, setErrors)
 
@@ -111,7 +116,7 @@ const NewPokemon = () => {
       //mapear el fomrulario al formato de la base de datos por si el contato algun dia cambia
       //obligatorios:
       const formatedFields = {
-        Nombre: fields.Name,
+        Nombre: fields.Name.toLowerCase(),
         Imagen: fields.Image.name,
         Vida: fields.Life,
         Ataque: fields.Attack,
@@ -145,14 +150,6 @@ const NewPokemon = () => {
       if (newPokemonsTODB.status === 200) {
         //TODO: hacer un modal para mostrar el resultado de la creacion del pokemon
         alert("Pokemon creado")
-
-        // ! esto debe ser un action que se carga en el estado global pero en las actions no aqui en el componente
-        // const endPointPokemonsFromDB = import.meta.env.VITE_APIURLDB
-        // const DBFreshData = await axios.get(endPointPokemonsFromDB)
-
-        // esto trae la base de datos:
-        // dispatch(loadDataBase(DBFreshData.data))
-        // debe quedar solo asi: dispatch(loadDataBase(dispatch))
         dispatch(loadDataBase(dispatch))
       } else alert("no se pudo crear el pokemon")
       //request post para database

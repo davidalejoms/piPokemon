@@ -1,11 +1,11 @@
-import PropTypes from "prop-types"
 import { useDispatch, useSelector } from "react-redux"
 import style from "./SliderContainer.module.css"
 import { FaLessThan, FaGreaterThan } from "react-icons/fa"
 import { filterTypes, resetCache } from "../../../redux/actions"
 import { useState } from "react"
 
-const SliderContainer = ({ origin }) => {
+const SliderContainer = () => {
+  const { origin } = useSelector((state) => state.auxGlobalStates)
   const typesOfPokemonGlobal = useSelector((state) => state.typesOfPokemons)
   // order by Nombre:a-Z
   typesOfPokemonGlobal.sort((a, b) => {
@@ -25,7 +25,7 @@ const SliderContainer = ({ origin }) => {
     setTitletype(type)
   }
   const handleAll = () => {
-    dispatcher(resetCache(origin)) // este estado se establece en pokemon que es de alto orden pero se usa aqui para resetear el cache y que se muestren todos los pokemones segun de donde vienen, si de la api o de la base de datos ,este estado se modifica en el componente orders and filters.
+    dispatcher(resetCache(origin))
     setTitletype(false)
   }
 
@@ -79,9 +79,6 @@ const SliderContainer = ({ origin }) => {
       {titleType ? <h1 className={style.title}>This Pokemons are {titleType} Type:</h1> : <h1 className={style.title}> Pokemons:</h1>}
     </div>
   )
-}
-SliderContainer.propTypes = {
-  origin: PropTypes.string.isRequired,
 }
 
 export default SliderContainer
