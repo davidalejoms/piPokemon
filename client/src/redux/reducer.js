@@ -14,8 +14,8 @@ import {
   FILTER_BY_TYPE,
 } from "../redux/actions" // las acctions se importan en el reducer
 const initialState = {
-  typesOfPokemons: [], // aqui se guardan los tipos de pokemones en la carga inicial
   allPokemons: [], // carga inicial se guarda aqui
+  typesOfPokemons: [], // aqui se guardan los tipos de pokemones en la carga inicial
   cache: [], // todo antes de mostrarse se guarda aqui
   shownInFront: [], // aqui se guarda la pagina actual que se muestra en la app
   databasePokemons: [], // aqui se guardan los pokemones de la base de datos
@@ -55,16 +55,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case FILTER_TYPES: {
       const byType = []
-      state.allPokemons.forEach((filtrado) => {
+      state.cache.forEach((filtrado) => {
         filtrado.Types.forEach((tipo) => {
           if (tipo.tipo === payload) {
             byType.push(filtrado)
           }
         })
       })
-      // console.log("file: reducer.js:50  payload:", payload)
-      // console.log("file: reducer.js:54  state.allPokemons:", state.allPokemons)
-      // console.log("file: reducer.js:55  byType:", byType)
+   
       return { ...state, cache: byType }
     }
     case RESET_CACHE: {

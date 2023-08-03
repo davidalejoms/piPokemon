@@ -24,6 +24,7 @@ const SliderContainer = () => {
     setTitletype(name)
   }
   const handleAll = () => {
+    //TODO: si el origen que se esta usando es database debe mostrat todos los pokemones de la base de datos ahora mismo solo muestra todos los de la api
     dispatcher(resetCache())
     setTitletype(false)
   }

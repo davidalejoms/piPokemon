@@ -28,7 +28,7 @@ const OrdersAndFilters = ({ forceOrder }) => {
     forceOrder()
   }
   // manejador de funete de datos, si es api entonces se cambia el origen de la data a la api, si es database se cambia a database
-  const [origin, setOrigin] = useState("Database")
+  const [origin, setOrigin] = useState("API")
   const originHandler = () => {
     origin === "Database" && setOrigin("API") //estos son para cambiar el icono
     origin === "API" && setOrigin("Database") //estos son para cambiar el icono

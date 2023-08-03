@@ -27,11 +27,8 @@ const NewPokemon = () => {
   useEffect(() => {
     // si no hay nada en el estado global se carga la api
     if (alltypes.length === 0) {
-      // const endpoint = "http://localhost:3001/pokemons"
       const begin = async () => {
-        const endpointTypes = import.meta.env.VITE_APIURLTYPES
-        const responseTypes = await axios.get(endpointTypes)
-        dispatch(loadTypes(responseTypes.data))
+        await dispatch(loadTypes(dispatch))
         setLoader(false) // apaga el loader
       }
       begin()
@@ -149,12 +146,14 @@ const NewPokemon = () => {
         //TODO: hacer un modal para mostrar el resultado de la creacion del pokemon
         alert("Pokemon creado")
 
-        const endPointPokemonsFromDB = import.meta.env.VITE_APIURLDB
-        const DBFreshData = await axios.get(endPointPokemonsFromDB)
+        // ! esto debe ser un action que se carga en el estado global pero en las actions no aqui en el componente
+        // const endPointPokemonsFromDB = import.meta.env.VITE_APIURLDB
+        // const DBFreshData = await axios.get(endPointPokemonsFromDB)
 
         // esto trae la base de datos:
-
-        dispatch(loadDataBase(DBFreshData.data))
+        // dispatch(loadDataBase(DBFreshData.data))
+        // debe quedar solo asi: dispatch(loadDataBase(dispatch))
+        dispatch(loadDataBase(dispatch))
       } else alert("no se pudo crear el pokemon")
       //request post para database
     }

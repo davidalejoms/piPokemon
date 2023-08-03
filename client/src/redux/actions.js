@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const LOAD_API = "LOAD_API" // carga todo desde el api al reducer en showInFront
 export const LOAD_FRONT = "LOAD_FRONT" // carga todo desde el api al reducer en showInFront
 export const LOAD_DATABASE = "LOAD_DATABASE" // desde el api en el enponit base de datos al reducer en databasePokemons
@@ -12,24 +14,31 @@ export const ORDER_BY_POWER_ASC = "ORDER_BY_POWER_ASC" //ordena el reducer en sh
 export const ORDER_BY_POWER_DESC = "ORDER_BY_POWER_DESC" //ordena el reducer en showInFront por poder de la mayor a la menor
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE" //filtra el reducer en showInFront por tipo de pokemon
 
-export const loadApi = (data) => {
-  return {
-    type: LOAD_API,
-    payload: data,
+export const loadApi = () => {
+  return async (dispatchFromComponents) => {
+    const endpoint = import.meta.env.VITE_APIURLPOKEMONS
+    const response = await axios.get(endpoint)
+    return dispatchFromComponents({ type: LOAD_API, payload: response.data })
   }
 }
 
 export const loadFront = (page) => {
   return { type: LOAD_FRONT, payload: page }
 }
-export const loadTypes = (types) => {
-  return { type: LOAD_TYPES, payload: types }
+
+export const loadTypes = () => {
+  return async (dispatchFromComponents) => {
+    const endpointTypes = import.meta.env.VITE_APIURLTYPES
+    const responseTypes = await axios.get(endpointTypes)
+    return dispatchFromComponents({ type: LOAD_TYPES, payload: responseTypes.data })
+  }
 }
+
 export const filterTypes = (type) => {
   return { type: FILTER_TYPES, payload: type }
 }
-export const resetCache = () => {
-  return { type: RESET_CACHE, payload: null }
+export const resetCache = (originToResetFrom) => {
+  return { type: RESET_CACHE, payload: originToResetFrom }
 }
 export const orderAZ = (type) => {
   return { type: ORDER_A_Z, payload: type }
@@ -43,11 +52,15 @@ export const orderByPowerAsc = (type) => {
 export const orderByPowerDesc = (type) => {
   return { type: ORDER_BY_POWER_DESC, payload: type }
 }
-export const loadDataBase = (pokemons) => {
-  return { type: LOAD_DATABASE, payload: pokemons }
+export const loadDataBase = () => {
+  return async (dispatchFromComponents) => {
+    const endPointPokemonsFromDB = import.meta.env.VITE_APIURLDB
+    const DBFreshData = await axios.get(endPointPokemonsFromDB)
+    return dispatchFromComponents({ type: LOAD_DATABASE, payload: DBFreshData.data }) // esto carga la base de datos en el reducer
+  }
 }
-export const loadDataBaseToCache = (pokemons) => {
-  return { type: LOAD_DATABASE_TO_CACHE, payload: pokemons }
+export const loadDataBaseToCache = () => {
+  return { type: LOAD_DATABASE_TO_CACHE, payload: null }
 }
 export const loadAPITocache = () => {
   return { type: LOAD_API_TO_CACHE, payload: null }
