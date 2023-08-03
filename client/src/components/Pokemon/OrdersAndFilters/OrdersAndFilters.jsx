@@ -5,7 +5,7 @@ import { ordersAndFiltersContainer, ordersAndFiltersMain } from "./OrdersAndFilt
 import { orderAZ, orderZA, orderByPowerAsc, orderByPowerDesc, loadDataBaseToCache, loadAPITocache } from "../../../redux/actions"
 import { useDispatch } from "react-redux"
 
-const OrdersAndFilters = ({ forceOrder }) => {
+const OrdersAndFilters = ({ forceOrder, origin, setOrigin }) => {
   const dispatcher = useDispatch()
   //manejador alfabetico- forza un estado local con la prop funcion para obligar un cambio en pokemon.jsx
   const [alpha, setAlpha] = useState("A-Z")
@@ -28,13 +28,13 @@ const OrdersAndFilters = ({ forceOrder }) => {
     forceOrder()
   }
   // manejador de funete de datos, si es api entonces se cambia el origen de la data a la api, si es database se cambia a database
-  const [origin, setOrigin] = useState("API")
+
   const originHandler = () => {
     origin === "Database" && setOrigin("API") //estos son para cambiar el icono
     origin === "API" && setOrigin("Database") //estos son para cambiar el icono
 
     //estos son para cambiar el icono // estan al reves para que se muestre el valor del boton acorde con lo que pasa en pantalla
-    origin === "API" && dispatcher(loadDataBaseToCache()) 
+    origin === "API" && dispatcher(loadDataBaseToCache())
     origin === "Database" && dispatcher(loadAPITocache()) //estos son para cambiar el icono
   }
 
@@ -59,6 +59,8 @@ const OrdersAndFilters = ({ forceOrder }) => {
 }
 OrdersAndFilters.propTypes = {
   forceOrder: PropTypes.func.isRequired,
+  origin: PropTypes.string.isRequired,
+  setOrigin: PropTypes.func.isRequired,
 }
 
 // OrdersAndFilters.propTypes = {}

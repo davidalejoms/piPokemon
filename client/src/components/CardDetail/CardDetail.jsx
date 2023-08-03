@@ -29,7 +29,7 @@ function CardDetail({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, A
   const toTypeviewSender = (type) => {
     // cambia el cache y envia a la vista de grilla apra esa categoria
 
-    dispatcher(filterTypes(type))
+    dispatcher(filterTypes(type, "API"))
     navigator("/pokemon")
   }
 

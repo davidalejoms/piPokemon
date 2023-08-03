@@ -14,7 +14,8 @@ const Pokemon = () => {
 
   const [order, setOrder] = useState(true) // cuando el orden de cache cambia react se limpia el culo con el cambio y no lo detecta como modificado
   const forceOrder = () => setOrder(!order) //al cambiar este estado se obliga un cambio se pasa como dependencia de render al use eFeect el elemento paginación, se cambia desde el elemento orders and filters cuando se cambia el tootgle de a-z z-a desde alli se ejecuta la funcion de cambiar estado y cuando cambia lo lee pagination.
-
+  const [origin, setOrigin] = useState("API") // este estado lo setea el componente orders and filters y se usa en el componente slider container para filtrar los tipos de pokemones que se muestran en pantalla segun el origen de la data,
+  //TODO se usa en tantos lados que lo mejor es pasarlo al estado global de redux para mañana lo haré, el ultimo chichcarron es que en el detail deberia poder llevar a las categorias pero no va a ocurrir si no se puede invicar el origin
   useEffect(() => {
     const begin = async () => {
       if (state.allPokemons.length === 0) {
@@ -36,11 +37,15 @@ const Pokemon = () => {
       {loader && <Loader />}
 
       <div className={style.headerFiltersAndpagination}>
-        <OrdersAndFilters forceOrder={forceOrder} />
+        <OrdersAndFilters
+          forceOrder={forceOrder}
+          origin={origin}
+          setOrigin={setOrigin}
+        />
         <Pagination order={order} />
       </div>
 
-      <SliderContainer />
+      <SliderContainer origin={origin} />
 
       <GridContainer
         pokemons={state.shownInFront}
@@ -52,111 +57,3 @@ const Pokemon = () => {
 }
 
 export default Pokemon
-
-/* const pokemons = [
-    {
-      Id: 1,
-      Nombre: "bulbasaur",
-      Imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      ImagenAux: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-
-      Vida: 45,
-      Defensa: 49,
-      Ataque: 25,
-      Velocidad: 45,
-      Altura: 7,
-      Peso: 69,
-      Tipo: "Fuego",
-    },
-    {
-      Id: 2,
-      Nombre: "bulbasaur",
-      Imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png",
-      ImagenAux: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-
-      Vida: 45,
-      Defensa: 49,
-      Ataque: 25,
-
-      Velocidad: 45,
-      Altura: 7,
-      Peso: 69,
-      Tipo: "Fuego",
-    },
-    {
-      Id: 3,
-      Nombre: "bulbasaur",
-      Imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      ImagenAux: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-
-      Vida: 45,
-      Defensa: 49,
-      Ataque: 25,
-
-      Velocidad: 45,
-      Altura: 7,
-      Peso: 69,
-      Tipo: "Fuego",
-    },
-    {
-      Id: 4,
-      Nombre: "bulbasaur",
-      Imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-
-      ImagenAux: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-
-      Vida: 45,
-      Defensa: 49,
-      Ataque: 25,
-
-      Velocidad: 45,
-      Altura: 7,
-      Peso: 69,
-      Tipo: "Fuego",
-    },
-    {
-      Id: 5,
-      Nombre: "bulbasaur",
-      Imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      ImagenAux: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-
-      Vida: 45,
-      Defensa: 49,
-      Ataque: 25,
-
-      Velocidad: 45,
-      Altura: 7,
-      Peso: 69,
-      Tipo: "Fuego",
-    },
-    {
-      Id: 6,
-      Nombre: "bulbasaur",
-      Imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      ImagenAux: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-
-      Vida: 45,
-      Defensa: 49,
-      Ataque: 25,
-
-      Velocidad: 45,
-      Altura: 7,
-      Peso: 69,
-      Tipo: "Fuego",
-    },
-    {
-      Id: 7,
-      Nombre: "bulbasaur",
-      Imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      ImagenAux: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-
-      Vida: 45,
-      Defensa: 49,
-      Ataque: 25,
-
-      Velocidad: 45,
-      Altura: 7,
-      Peso: 69,
-      Tipo: "Fuego",
-    },
-  ] */

@@ -19,6 +19,7 @@ const initialState = {
   cache: [], // todo antes de mostrarse se guarda aqui
   shownInFront: [], // aqui se guarda la pagina actual que se muestra en la app
   databasePokemons: [], // aqui se guardan los pokemones de la base de datos
+  // origin: "API", // aqui se guarda el origen de la data que se muestra en la app
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -54,20 +55,31 @@ const rootReducer = (state = initialState, { type, payload }) => {
     }
 
     case FILTER_TYPES: {
+      //TODO: segun el origen de la data filtrar por tipo, esta action recibira el origen de la data y el tipo para filtrar asi nunca se pierde la data original y rellena cache sin problemas.
+      let iterator = []
+      payload.origin === "API" && (iterator = state.allPokemons)
+      payload.origin === "Database" && (iterator = state.databasePokemons)
       const byType = []
-      state.cache.forEach((filtrado) => {
+      iterator.forEach((filtrado) => {
         filtrado.Types.forEach((tipo) => {
-          if (tipo.tipo === payload) {
+          if (tipo.tipo === payload.type) {
             byType.push(filtrado)
           }
         })
       })
-   
+
       return { ...state, cache: byType }
     }
-    case RESET_CACHE: {
-      return { ...state, cache: state.allPokemons }
-    }
+    case RESET_CACHE:
+      {
+        if (payload === "API") {
+          return { ...state, cache: state.allPokemons }
+        }
+        if (payload === "Database") {
+          return { ...state, cache: state.databasePokemons }
+        }
+      }
+      break
     case ORDER_A_Z: {
       const orderAZArr = state.cache.sort((a, b) => {
         if (a.Nombre > b.Nombre) {

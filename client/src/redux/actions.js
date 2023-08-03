@@ -34,11 +34,11 @@ export const loadTypes = () => {
   }
 }
 
-export const filterTypes = (type) => {
-  return { type: FILTER_TYPES, payload: type }
+export const filterTypes = (type, origin) => {
+  return { type: FILTER_TYPES, payload: { type, origin } }
 }
-export const resetCache = (originToResetFrom) => {
-  return { type: RESET_CACHE, payload: originToResetFrom }
+export const resetCache = (origin) => {
+  return { type: RESET_CACHE, payload: origin }
 }
 export const orderAZ = (type) => {
   return { type: ORDER_A_Z, payload: type }
@@ -65,3 +65,4 @@ export const loadDataBaseToCache = () => {
 export const loadAPITocache = () => {
   return { type: LOAD_API_TO_CACHE, payload: null }
 }
+//TODO: funcion para cambiar el origen de la data esto afectará los ultimos cambios de la data en el reducer y los filtros de tipo pero val la pena por que simplifica el codigo y lo hace mas escalable
