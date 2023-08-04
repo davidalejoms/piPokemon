@@ -19,29 +19,25 @@ import { loadDataBase, loadTypes, setGlobalLoader } from "../../redux/actions"
 import axios from "axios"
 
 const NewPokemon = () => {
-  //cargar tipos por si no estan cargados inicio
   const alltypes = useSelector((state) => state.typesOfPokemons) // el frontdata es el estado global de shownInFront que se pinta en pantalla
-  const dispatch = useDispatch() // para mandar cosas al estado global
-  // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
+  const dispatch = useDispatch()
   const { loader } = useSelector((state) => state.auxGlobalStates) // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
 
   useEffect(() => {
-    dispatch(setGlobalLoader(true)) // prende el loader
+    //cargar tipos por si no estan cargados
+    dispatch(setGlobalLoader(true))
     // si no hay nada en el estado global se carga la api
     if (alltypes.length === 0) {
       const begin = async () => {
         await dispatch(loadTypes(dispatch))
 
-        dispatch(setGlobalLoader(false)) // apaga el loader
+        dispatch(setGlobalLoader(false))
       }
       begin()
     } else {
-      // si ya esta cargado el estado global solo se apaga el loader
       dispatch(setGlobalLoader(false)) // apaga el loader
     }
   }, [dispatch, alltypes.length])
-  //cargar tipos por si no estan cargados fin
-  //TODO: Usar useCallback aquipara que el pajaro no cargue con cada render
 
   const randomicon = () => {
     const icons = [
@@ -74,7 +70,7 @@ const NewPokemon = () => {
     let value = e.target.value
     const files = e.target.files
 
-    // delete key for state if the field is empty
+    // delete key for state if the field is empty when image was deleted
     if (files && files.length === 0) {
       const temporalStateToRemoveFieldEmpty = { ...fields }
       delete temporalStateToRemoveFieldEmpty[name]
@@ -89,15 +85,14 @@ const NewPokemon = () => {
 
     newPokemonValidator({ ...fields, [name]: value }, setErrors)
   }
-
+  //!================================================================== !inicio handle submit
   const handleSubmit = async (e) => {
     e.preventDefault()
+    //prepare an object using all mandatory fileds in case a field wasn´t touched to show up that it is empty in this new object
     const lastvalidation = {
-      // if fields.fieldname is not empty then fields.fieldname.value else ''
       Type: (() => ("Type" in fields ? fields.Type : ""))(),
       Name: (() => ("Name" in fields ? fields.Name : ""))(),
       Image: (() => ("Image" in fields ? fields.Image : ""))(),
-      // AuxImage: (() => ("AuxImage" in fields ? fields.AuxImage : ""))(),//not mandatory doesnt matter if exist or not in fields
       Defense: (() => ("Defense" in fields ? fields.Defense : ""))(),
       Speed: (() => ("Speed" in fields ? fields.Speed : ""))(),
       Life: (() => ("Life" in fields ? fields.Life : ""))(),
@@ -105,7 +100,7 @@ const NewPokemon = () => {
       Weight: (() => ("Weight" in fields ? fields.Weight : ""))(),
       Attack: (() => ("Attack" in fields ? fields.Attack : ""))(),
     }
-    
+
     console.log(lastvalidation)
 
     newPokemonValidator(lastvalidation, setErrors)
@@ -114,7 +109,7 @@ const NewPokemon = () => {
       alert("no se puede enviar") //TODO: modal para mostrar los errores de validacion
     else {
       //mapear el fomrulario al formato de la base de datos por si el contato algun dia cambia
-      //obligatorios:
+      //    obligatorios:
       const formatedFields = {
         Nombre: fields.Name.toLowerCase(),
         Imagen: fields.Image.name,
@@ -126,18 +121,17 @@ const NewPokemon = () => {
         Peso: fields.Weight,
         Tipos: [Number(fields.Type)], // como segudo elemento del array el type2 si existe
       }
-      // console.log("file: NewPokemon.jsx:125  formatedFields:", formatedFields)
-
-      // opcionales
+      //    opcionales
       if (fields.AuxImage) formatedFields.AuxImage = fields.AuxImage.name
+
       // convertir el objeto en un formdata para enviarlo al back
-      // const formData = new FormData()
+      const formData = new FormData()
 
-      // for (const key in formatedFields) {
-      //   formData.append(key, formatedFields[key])
-      // }
+      for (const key in formatedFields) {
+        formData.append(key, formatedFields[key])
+      }
 
-      // console.log("file: NewPokemon.jsx:136  formData:", formData)
+      console.log("file: NewPokemon.jsx:136  formData:", formData)
 
       const endPointPokemons = import.meta.env.VITE_APIURLPOKEMONS
 
@@ -155,8 +149,7 @@ const NewPokemon = () => {
       //request post para database
     }
   }
-
-  // validador de datos fin
+  //!================================================================== !fin handle submit
 
   return (
     <>

@@ -94,7 +94,7 @@ const getPokemonByName = async (name) => {
     throw new Error("Pokemon not found")
   }
 }
-
+// !inicio de post
 const newPokemon = async (Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso, Tipos) => {
   console.log(
     "==============================file: pokemonsCt.js:98 \n Nombre",

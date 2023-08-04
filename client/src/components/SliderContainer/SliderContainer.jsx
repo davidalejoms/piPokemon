@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import style from "./SliderContainer.module.css"
 import { FaLessThan, FaGreaterThan } from "react-icons/fa"
-import { filterTypes, resetCache } from "../../../redux/actions"
+import { filterTypes, resetCache } from "../../redux/actions"
 import { useState } from "react"
 
 const SliderContainer = () => {

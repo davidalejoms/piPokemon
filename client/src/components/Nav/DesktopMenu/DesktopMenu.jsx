@@ -1,12 +1,13 @@
-import { Navcontainer, LinkHeader } from "../DesktopMenu/DesktopMenu.module.css"
+import styles from "../DesktopMenu/DesktopMenu.module.css"
 import appLogo from "../../../assets/appLogo.gif"
 import { MdCatchingPokemon } from "react-icons/md"
 import { Link } from "react-router-dom"
 import SearchField from "../SearchField/SearchField"
+import OriginSwitcherButton from "../../OriginSwitcherButton/OriginSwitcherButton"
 const DesktopMenu = () => {
   return (
     <>
-      <div className={Navcontainer}>
+      <div className={styles.Navcontainer}>
         <Link to="/">
           <div id="logo">
             <img
@@ -16,7 +17,7 @@ const DesktopMenu = () => {
           </div>
         </Link>
         <Link
-          className={LinkHeader}
+          className={styles.LinkHeader}
           to="/Pokemon"
         >
           <MdCatchingPokemon
@@ -24,25 +25,24 @@ const DesktopMenu = () => {
           />
         </Link>
         <Link
-          className={LinkHeader}
+          className={styles.LinkHeader}
           to="/about"
         >
           About
         </Link>
         <Link
-          className={LinkHeader}
+          className={styles.LinkHeader}
           to="/new-pokemon"
         >
           Create Your Own
         </Link>
-        {/* <span
-          className={LinkHeader}
-          to="/about"
-          onClick={() => alert("Show type slider")}
-        >
-          By Type
-        </span> */}
+
         <SearchField />
+
+        <div className={styles.rowFlexer}>
+          <label htmlFor="">Origin</label>
+          <OriginSwitcherButton />
+        </div>
       </div>
     </>
   )

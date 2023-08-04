@@ -15,12 +15,12 @@
 
 .Navcontainer img {
   max-width: 250px;
- padding: 1rem;
+  padding: 1rem;
 }
 
 .LinkHeader {
   font-family: system-ui;
-  color: black;
+  color: var(--text);
   text-decoration: none;
   cursor: pointer;
   font-weight: bold;
@@ -30,6 +30,16 @@
 }
 .miniMenuMobile {
   display: none;
+}
+.rowFlexer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.rowFlexer label {
+  color: var(--text);
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {

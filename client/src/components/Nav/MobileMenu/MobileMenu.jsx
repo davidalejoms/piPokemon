@@ -1,13 +1,14 @@
-import { mobileMenu, LinkMobile, logoMobile } from "./MobileMenu.module.css"
+import styles from "./MobileMenu.module.css"
 import { Link } from "react-router-dom"
 import appLogo from "../../../assets/appLogo.gif"
 import PropTypes from "prop-types"
 import { MdCatchingPokemon } from "react-icons/md"
 import SearchField from "../SearchField/SearchField"
+import OriginSwitcherButton from "../../OriginSwitcherButton/OriginSwitcherButton"
 const MobileMenu = ({ toggleMobileMenuHandler }) => {
   return (
     <>
-      <div className={logoMobile}>
+      <div className={styles.logoMobile}>
         <Link to="/">
           <div id="logo">
             <img
@@ -18,10 +19,14 @@ const MobileMenu = ({ toggleMobileMenuHandler }) => {
           </div>
         </Link>
       </div>
-      <div className={mobileMenu}>
+      <div className={styles.mobileMenu}>
+        <div className={styles.rowFlexer}>
+          <label className={styles.LinkMobileOnlylabel}>Origin:</label>
+          <OriginSwitcherButton />
+        </div>
         <SearchField toggleMobileMenuHandler={toggleMobileMenuHandler} />
         <Link
-          className={LinkMobile}
+          className={styles.LinkMobile}
           to="/Pokemon"
           onClick={toggleMobileMenuHandler}
         >
@@ -38,21 +43,21 @@ const MobileMenu = ({ toggleMobileMenuHandler }) => {
           Go to APP
         </Link>
         <Link
-          className={LinkMobile}
+          className={styles.LinkMobile}
           to="/about"
           onClick={toggleMobileMenuHandler}
         >
           About
         </Link>
         <Link
-          className={LinkMobile}
+          className={styles.LinkMobile}
           to="/new-pokemon"
           onClick={toggleMobileMenuHandler}
         >
           Create Your Own
         </Link>
         {/* <span
-          className={LinkMobile}
+          className={styles.LinkMobile}
           to="/about"
           onClick={toggleMobileMenuHandler}
         >

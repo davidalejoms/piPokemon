@@ -2,19 +2,12 @@
 import PropTypes from "prop-types"
 import { useState } from "react"
 import { ordersAndFiltersContainer, ordersAndFiltersMain } from "./OrdersAndFilters.module.css"
-import {
-  orderAZ,
-  orderZA,
-  orderByPowerAsc,
-  orderByPowerDesc,
-  loadDataBaseToCache,
-  loadAPITocache,
-  setGlobalOrigin,
-} from "../../../redux/actions"
-import { useDispatch, useSelector } from "react-redux"
+import { orderAZ, orderZA, orderByPowerAsc, orderByPowerDesc } from "../../redux/actions"
+import { useDispatch } from "react-redux"
+import OriginSwitcherButton from "../OriginSwitcherButton/OriginSwitcherButton"
 
 const OrdersAndFilters = ({ forceOrder }) => {
-  const { origin } = useSelector((state) => state.auxGlobalStates)
+  // const { origin } = useSelector((state) => state.auxGlobalStates)
   const dispatcher = useDispatch()
   //manejador alfabetico- forza un estado local con la prop funcion para obligar un cambio en pokemon.jsx
   const [alpha, setAlpha] = useState("A-Z")
@@ -38,28 +31,21 @@ const OrdersAndFilters = ({ forceOrder }) => {
   }
   // manejador de funete de datos, si es api entonces se cambia el origen de la data a la api, si es database se cambia a database
 
-  const originHandler = () => {
-    origin === "Database" && dispatcher(setGlobalOrigin("API")) //estos son para cambiar el icono
-    origin === "API" && dispatcher(setGlobalOrigin("Database")) //estos son para cambiar el icono
-
-    //estos son para cambiar el icono // estan al reves para que se muestre el valor del boton acorde con lo que pasa en pantalla
-    origin === "API" && dispatcher(loadDataBaseToCache())
-    origin === "Database" && dispatcher(loadAPITocache()) //estos son para cambiar el icono
-  }
-
   return (
     <div className={ordersAndFiltersContainer}>
       <ul className={ordersAndFiltersMain}>
         <li>
-          <label>Origen</label>
-          <button onClick={originHandler}> {origin}</button>
+          <label>Origin</label>
+          <OriginSwitcherButton />
+          {/* 
+          <button onClick={originHandler}> {origin}</button> */}
         </li>
         <li>
-          <label>Ordenado</label>
+          <label>Order</label>
           <button onClick={alphaHandler}> {alpha}</button>
         </li>
         <li>
-          <label>Poder</label>
+          <label>Power</label>
           <button onClick={powerOrderHandler}> {powerOrder}</button>
         </li>
       </ul>
@@ -69,7 +55,5 @@ const OrdersAndFilters = ({ forceOrder }) => {
 OrdersAndFilters.propTypes = {
   forceOrder: PropTypes.func.isRequired,
 }
-
-// OrdersAndFilters.propTypes = {}
 
 export default OrdersAndFilters

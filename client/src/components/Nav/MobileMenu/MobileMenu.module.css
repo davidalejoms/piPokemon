@@ -29,7 +29,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin-top: 2rem;
     padding: 0.5rem 3rem;
     font-size: 1.2rem;
@@ -37,6 +36,11 @@
     width: 205px;
     border: 2px solid rgb(158, 158, 158);
     text-align: center;
+    font-family: system-ui;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
   }
   .logoMobile {
     position: relative;
@@ -56,11 +60,19 @@
     z-index: 30;
     color: var(--text);
   }
-  .LinkMobile {
+  .LinkMobileOnlylabel {
+    font-size: 1.2rem;
     font-family: system-ui;
     color: black;
     text-decoration: none;
     cursor: pointer;
     font-weight: bold;
+  }
+  .rowFlexer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
 }
