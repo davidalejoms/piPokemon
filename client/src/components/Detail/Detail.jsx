@@ -47,7 +47,7 @@ const Detail = () => {
     }
 
     if (origin === "Database") {
-      dispatch(setGlobalLoader(false))
+      // dispatch(setGlobalLoader(false))
       const detailBegin = async () => {
         try {
           const pokemonReqResult = await axios.get(`${import.meta.env.VITE_APIURLDB}/${idOrName}`)

@@ -81,6 +81,18 @@ const NewPokemon = () => {
       value = files[0]
     }
 
+    // // if is type or type2 then push an array
+    // if (name === "Type") {
+    //   setFields({ ...fields, [name]: [...fields.Type, (fields.Type[0] = value)] })
+    //   return
+    // }
+
+    // if (name === "Type" || name === "Type2") {
+    //   name = "Type" // when type2 is select saves in the same field Type
+    //   setFields({ ...fields, [name]: [...fields.Type, value] })
+    //   return
+    // }
+
     setFields({ ...fields, [name]: value })
 
     newPokemonValidator({ ...fields, [name]: value }, setErrors)
@@ -108,7 +120,7 @@ const NewPokemon = () => {
     if (!(Object.keys(fields).length >= 9 && Object.keys(errors).length === 0))
       alert("no se puede enviar") //TODO: modal para mostrar los errores de validacion
     else {
-      //mapear el fomrulario al formato de la base de datos por si el contato algun dia cambia
+      //mapear el formulario al formato de la base de datos por si el contato algun dia cambia
       //    obligatorios:
       const formatedFields = {
         Nombre: fields.Name.toLowerCase(),
@@ -119,7 +131,7 @@ const NewPokemon = () => {
         Velocidad: fields.Speed,
         Altura: fields.Height,
         Peso: fields.Weight,
-        Tipos: [Number(fields.Type)], // como segudo elemento del array el type2 si existe
+        Tipos: [fields.Type, fields.Type2],
       }
       //    opcionales
       if (fields.AuxImage) formatedFields.AuxImage = fields.AuxImage.name
@@ -202,6 +214,39 @@ const NewPokemon = () => {
                 </select>
                 {errors.Type && <p className={styles.errorMessage}>{errors.Type}</p>}
               </div>
+              {fields.Type && (
+                <div
+                  className={styles.datain}
+                  style={{ flexGrow: "2" }}
+                >
+                  <label htmlFor="Type2">
+                    <MdOutlineCategory style={{ paddingRight: "0.6em" }} />
+                    Sub Type:
+                  </label>
+                  <select
+                    onChange={handleChange}
+                    name="Type2"
+                    id=""
+                    // value={fields.Type}
+                  >
+                    <option value="">Choose one</option>
+                    {types.map((t, i) => {
+                      return (
+                        <option
+                          key={i}
+                          value={t.id}
+                        >
+                          {t.tipo}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  {/* {errors.Type && <p className={styles.errorMessage}>{errors.Type}</p>} //optional field */}
+                </div>
+              )}
+            </div>
+
+            <div className={styles.rowdataAll}>
               <div className={styles.datain}>
                 <label htmlFor="Name">
                   <BiRename /> Name:

@@ -2,8 +2,7 @@ const PokemonValidator = (fields, setErrors) => {
   const errors = {}
   //validations for type field
 
-  if ("Type" in fields && fields.Type === "") errors.Type = "Type cannot be empty" // 'Type' in fields es evaluado true si no viene en el objeto fields
-
+  if ("Type" in fields && fields.Type === "") errors.Type = "Type cannot be empty"
   // validations for Name Field
   if ("Name" in fields && fields.Name === "") errors.Name = `Name cannot be Empty`
   if ("Name" in fields && fields.Name.length < 3) errors.Name = `Name must be al teast 3 characters`

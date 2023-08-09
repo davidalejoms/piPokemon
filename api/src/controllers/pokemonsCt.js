@@ -1,11 +1,12 @@
 const axios = require("axios")
 const { Pokemon, Types } = require("../db.js")
 const loadTypes = require("../utils/loadTypes.js")
+
 const getPokelist = async () => {
   //hasta la fecha de este algoritmo hay 1281 pokemones
   try {
     // tomar todo el arreglo entrante y cargar un arreglo con todas las promesas que haran la request
-    const pokemons = await axios("https://pokeapi.co/api/v2/pokemon?offset=0&limit=900") //importante manejar la cantidad
+    const pokemons = await axios("https://pokeapi.co/api/v2/pokemon?offset=0&limit=500") //importante manejar la cantidad
     // ahora cargamos el arreglo  para procesarlo despues como promesas en bloque con Promise.all
     const pokePromises = pokemons.data.results.map((pokemon) => axios(pokemon.url))
     // ahora procesamos el arreglo  para obtener un arreglo con los datos en bruto, gauramos los resultados en rawAllPokemon

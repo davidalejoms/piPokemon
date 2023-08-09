@@ -20,7 +20,7 @@ const Pokemon = () => {
     dispatch(setGlobalLoader(true)) // prende el loader
     const begin = async () => {
       if (allPokemons.length === 0) {
-        await dispatch(loadApi(dispatch)) //carga el estaddo global con toda la data en allPokemons y en caché
+        //   await dispatch(loadApi(dispatch)) //carga el estaddo global con toda la data en allPokemons y en caché
       }
       if (typesOfPokemons.length === 0) {
         await dispatch(loadTypes(dispatch))
@@ -45,6 +45,10 @@ const Pokemon = () => {
       <SliderContainer />
 
       <GridContainer />
+      <div className={style.footerPagination}>
+        <Pagination order={order} />
+      </div>
+
       {/*  se manda loader para que no muestre el pato de cuando no hay resultados si esta realemtne cagandolos del api */}
     </>
   )

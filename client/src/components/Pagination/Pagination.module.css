@@ -9,6 +9,7 @@
   /* z-index: 50; */
   padding: 1.5rem 0 0.5rem 0;
   margin: 0 auto;
+  
 }
 /* style scrollbar to look green and iis borders none */
 .numbers::-webkit-scrollbar {
@@ -28,7 +29,8 @@
   margin: 0 4px;
   border-radius: 4px;
   transition: 0.3s;
-  +background: #fff;
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 .pagButton:hover {
   background-color: var(--primary);

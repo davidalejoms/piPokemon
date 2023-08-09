@@ -110,10 +110,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
     }
     case ORDER_BY_POWER_ASC: {
       const orderHPAsc = state.cache.sort((a, b) => {
-        if (a.Ataque > b.Ataque) {
+        if (a.Ataque < b.Ataque) {
           return 1
         }
-        if (a.Ataque < b.Ataque) {
+        if (a.Ataque > b.Ataque) {
           return -1
         }
         return 0
@@ -123,10 +123,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
     }
     case ORDER_BY_POWER_DESC: {
       const orderHPDesc = state.cache.sort((a, b) => {
-        if (a.Ataque < b.Ataque) {
+        if (a.Ataque > b.Ataque) {
           return 1
         }
-        if (a.Ataque > b.Ataque) {
+        if (a.Ataque < b.Ataque) {
           return -1
         }
         return 0

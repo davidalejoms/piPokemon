@@ -33,7 +33,7 @@
   /* flex-wrap: wrap; */
   gap: 1rem;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   width: 600px;
   padding: 2rem 1rem;
   border: 1px solid rgba(39, 255, 32, 0.192);

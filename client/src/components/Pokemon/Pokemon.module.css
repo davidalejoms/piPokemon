@@ -14,7 +14,14 @@
   margin-right: 3rem;
   margin-bottom: 1rem;
 }
-
+.footerPagination {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
 @media screen and (max-width: 768px) {
   .headerFiltersAndpagination {
     flex-direction: column;
