@@ -81,18 +81,6 @@ const NewPokemon = () => {
       value = files[0]
     }
 
-    // // if is type or type2 then push an array
-    // if (name === "Type") {
-    //   setFields({ ...fields, [name]: [...fields.Type, (fields.Type[0] = value)] })
-    //   return
-    // }
-
-    // if (name === "Type" || name === "Type2") {
-    //   name = "Type" // when type2 is select saves in the same field Type
-    //   setFields({ ...fields, [name]: [...fields.Type, value] })
-    //   return
-    // }
-
     setFields({ ...fields, [name]: value })
 
     newPokemonValidator({ ...fields, [name]: value }, setErrors)
@@ -113,8 +101,6 @@ const NewPokemon = () => {
       Attack: (() => ("Attack" in fields ? fields.Attack : ""))(),
     }
 
-    console.log(lastvalidation)
-
     newPokemonValidator(lastvalidation, setErrors)
 
     if (!(Object.keys(fields).length >= 9 && Object.keys(errors).length === 0))
@@ -124,15 +110,16 @@ const NewPokemon = () => {
       //    obligatorios:
       const formatedFields = {
         Nombre: fields.Name.toLowerCase(),
-        Imagen: fields.Image.name,
+        Imagen: fields.Image,
         Vida: fields.Life,
         Ataque: fields.Attack,
         Defensa: fields.Defense,
         Velocidad: fields.Speed,
         Altura: fields.Height,
         Peso: fields.Weight,
-        Tipos: [fields.Type, fields.Type2],
+        Tipos: (() => ("Type2" in fields && fields.Type2 !== "" ? [fields.Type, fields.Type2] : [fields.Type]))(),
       }
+
       //    opcionales
       if (fields.AuxImage) formatedFields.AuxImage = fields.AuxImage.name
 
@@ -142,8 +129,10 @@ const NewPokemon = () => {
       for (const key in formatedFields) {
         formData.append(key, formatedFields[key])
       }
-
-      console.log("file: NewPokemon.jsx:136  formData:", formData)
+      // show formData entries conslogged
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1])
+      }
 
       const endPointPokemons = import.meta.env.VITE_APIURLPOKEMONS
 
@@ -371,7 +360,8 @@ const NewPokemon = () => {
                 {errors.Attack && <p className={styles.errorMessage}>{errors.Attack}</p>}
               </div>
             </div>
-            <div className={styles.datain}>
+
+            <div className={styles.rowSubmit}>
               <button type="submit">Send</button>
             </div>
           </form>

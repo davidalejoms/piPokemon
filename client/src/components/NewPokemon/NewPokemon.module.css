@@ -26,6 +26,17 @@
   border-radius: 1rem;
 }
 
+.prevwrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: start;
+  /* border: 1px solid red; */
+}
+.prevwrapper img {
+  max-width: 60%;
+  /* border: 1px solid red; */
+}
 .componentContainer form {
   /* background-color: pink; */
   display: flex;
@@ -34,7 +45,7 @@
   gap: 1rem;
   justify-content: center;
   align-items: left;
-  width: 600px;
+  /* width: 500px; */
   padding: 2rem 1rem;
   border: 1px solid rgba(39, 255, 32, 0.192);
   border-radius: 1rem;
@@ -52,7 +63,7 @@
   justify-items: left;
   align-items: start;
   /* border:5px solid red; */
-  margin-left: 4rem;
+  /* margin-left: 4rem; */
   width: 100%;
 }
 .datain {
@@ -120,38 +131,34 @@ style input type="file" .datain input[type="file"] {
   transition: all 0.3s ease-in-out;
 }
 
-.datain button {
-  width: 100%;
-  margin-top: 2rem;
+.pokemonWrapper {
+  display: flex;
+  justify-content: center;
+}
+.pokemonWrapper img {
+  max-width: 100%;
+}
+
+.rowSubmit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.rowSubmit button {
+  max-width: 80%;
   background-color: var(--primary);
   color: var(--white);
-  flex-grow: 1;
 
   border-radius: 1000px;
-  padding: 0.6rem 10rem;
+  padding: 0.6rem 0rem;
+
   font-size: 1.2rem;
   font-family: system-ui;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-}
-
-.prevwrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.prevwrapper img {
-  max-height: 30vh;
-}
-
-.pokemonWrapper {
-  display: flex;
-  justify-content: center;
-  /* background-color: cyan; */
-  min-width: 50%;
-}
-.pokemonWrapper img {
-  max-width: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -160,11 +167,14 @@ style input type="file" .datain input[type="file"] {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    width: 100%;
+    max-width: 90%;
   }
   .componentContainer {
     display: flex;
     flex-direction: column;
+  }
+  .prevwrapper {
+    display: none;
   }
   .componentContainer form {
     width: 90%;
@@ -197,6 +207,9 @@ style input type="file" .datain input[type="file"] {
     max-width: 60%;
     margin-bottom: 2rem;
   }
+}
+.rowSubmit button {
+  width: 100%;
 }
 .errorMessage {
   color: red;
