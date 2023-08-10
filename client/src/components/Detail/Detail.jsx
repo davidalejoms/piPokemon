@@ -39,6 +39,7 @@ const Detail = () => {
             setPokemonDetail(pokemonReqResult.data)
             dispatch(setGlobalLoader(false)) // apaga el loader
           } catch (error) {
+            setPokemonDetail([])
             dispatch(setGlobalLoader(false))
           }
         }
@@ -57,6 +58,7 @@ const Detail = () => {
 
           dispatch(setGlobalLoader(false))
         } catch (error) {
+          setPokemonDetail([])
           dispatch(setGlobalLoader(false))
         }
       }

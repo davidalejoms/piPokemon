@@ -93,6 +93,7 @@ const NewPokemon = () => {
       Type: (() => ("Type" in fields ? fields.Type : ""))(),
       Name: (() => ("Name" in fields ? fields.Name : ""))(),
       Image: (() => ("Image" in fields ? fields.Image : ""))(),
+      AuxImage: (() => ("AuxImage" in fields ? fields.AuxImage : ""))(),
       Defense: (() => ("Defense" in fields ? fields.Defense : ""))(),
       Speed: (() => ("Speed" in fields ? fields.Speed : ""))(),
       Life: (() => ("Life" in fields ? fields.Life : ""))(),
@@ -103,14 +104,15 @@ const NewPokemon = () => {
 
     newPokemonValidator(lastvalidation, setErrors)
 
-    if (!(Object.keys(fields).length >= 9 && Object.keys(errors).length === 0))
+    if (!(Object.keys(fields).length >= 10 && Object.keys(errors).length === 0))
       alert("no se puede enviar") //TODO: modal para mostrar los errores de validacion
     else {
       //mapear el formulario al formato de la base de datos por si el contato algun dia cambia
       //    obligatorios:
       const formatedFields = {
         Nombre: fields.Name.toLowerCase(),
-        Imagen: fields.Image,
+        Image: fields.Image,
+        AuxImage: fields.AuxImage,
         Vida: fields.Life,
         Ataque: fields.Attack,
         Defensa: fields.Defense,
@@ -119,10 +121,6 @@ const NewPokemon = () => {
         Peso: fields.Weight,
         Tipos: (() => ("Type2" in fields && fields.Type2 !== "" ? [fields.Type, fields.Type2] : [fields.Type]))(),
       }
-
-      //    opcionales
-      if (fields.AuxImage) formatedFields.AuxImage = fields.AuxImage.name
-
       // convertir el objeto en un formdata para enviarlo al back
       const formData = new FormData()
 
@@ -130,23 +128,23 @@ const NewPokemon = () => {
         formData.append(key, formatedFields[key])
       }
       // show formData entries conslogged
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1])
-      }
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ", " + pair[1])
+      // }
 
       const endPointPokemons = import.meta.env.VITE_APIURLPOKEMONS
+      try {
+        const newPokemonsTODB = await axios.post(endPointPokemons, formData)
+        console.log("file: NewPokemon.jsx:107  newPokemonsTODB:", newPokemonsTODB)
 
-      const newPokemonsTODB = await axios.post(endPointPokemons, formatedFields, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      // console.log("file: NewPokemon.jsx:107  newPokemonsTODB:", newPokemonsTODB)
-      if (newPokemonsTODB.status === 200) {
-        //TODO: hacer un modal para mostrar el resultado de la creacion del pokemon
-        alert("Pokemon creado")
-        dispatch(loadDataBase(dispatch))
-      } else alert("no se pudo crear el pokemon")
+        if (newPokemonsTODB.status === 200) {
+          //TODO: hacer un modal para mostrar el resultado de la creacion del pokemon
+          alert("Pokemon creado")
+          dispatch(loadDataBase(dispatch))
+        } else alert("no se pudo crear el pokemon")
+      } catch (error) {
+        alert("no se pudo crear el pokemon, revisa que el nombre sea unico y que los datos esten completos")
+      }
       //request post para database
     }
   }
@@ -155,6 +153,7 @@ const NewPokemon = () => {
   return (
     <>
       {loader && <Loader />}
+
       <div className={styles.componentContainer}>
         <h1>Create Your Own Pokemon</h1>
         <div className={styles.elementsWrapper}>
@@ -173,7 +172,11 @@ const NewPokemon = () => {
               )}
             </div>
           )}
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            // multipart form
+            encType=""
+          >
             <div className={styles.rowdataAll}>
               <div
                 className={styles.datain}

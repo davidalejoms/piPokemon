@@ -24,17 +24,19 @@
   margin: 1rem;
   padding: 1rem;
   border-radius: 1rem;
+  gap: 2rem;
 }
 
 .prevwrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: start;
+  /* max-width: 30%; */
   /* border: 1px solid red; */
 }
 .prevwrapper img {
-  max-width: 60%;
+  max-width: 250px;
   /* border: 1px solid red; */
 }
 .componentContainer form {

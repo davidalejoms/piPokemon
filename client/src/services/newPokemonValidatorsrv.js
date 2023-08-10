@@ -22,7 +22,7 @@ const PokemonValidator = (fields, setErrors) => {
   }
 
   // validations for AuxImage Field
-  // if ("AuxImage" in fields && fields.AuxImage === "") errors.AuxImage = `AuxImage cannot be Empty`
+  if ("AuxImage" in fields && fields.AuxImage === "") errors.AuxImage = `AuxImage cannot be Empty`
   //verificar la extension del archivo
   if ("AuxImage" in fields && fields.AuxImage !== "") {
     const ext = fields.AuxImage.name.split(".").at(-1)

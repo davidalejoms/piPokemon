@@ -1,6 +1,10 @@
+const express = require("express")
 const { Router } = require("express")
-const { getPokelist, getPokemonDetail, getPokemonByName, newPokemon, getPokemonFromDB } = require("../controllers/pokemonsCt")
-pokemonsHandler = Router()
+const { getPokelist, getPokemonDetail, getPokemonByName, newPokemon } = require("../controllers/pokemonsCt")
+// import path from node
+const path = require("path")
+
+pokemonsHandler = express()
 
 pokemonsHandler.get("/", async (req, res) => {
   try {
@@ -37,34 +41,52 @@ pokemonsHandler.get("/:id", async (req, res) => {
     res.status(400).json({ error: `/:id ${error.message}` })
   }
 })
+// !===================================================================================
+// debo recibir todos los datos del pokemon
+// recibir la imagen que viene y guardarla en el servidor
+// recibir la imagen auxiliar que viene y guardarla en el servidor
+// enviar la ruta donde se guardo como tipo
 
 // #### **📍 POST | /pokemons**
-// -  Esta ruta recibirá todos los datos necesarios para crear un pokemon y relacionarlo con sus tipos solicitados.
-// -  Toda la información debe ser recibida por body.
-// -  Debe crear un pokemon en la base de datos, y este debe estar relacionado con sus tipos indicados (debe poder relacionarse al menos con dos).
+const multer = require("multer")
+const fs = require("fs") // Add this line
 
-pokemonsHandler.post("/", async (req, res) => {
+const uploadDirectory = "./uploads/"
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDirectory) // Use the 'uploadDirectory' variable
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  },
+})
+
+const upload = multer({ storage: storage })
+const cpUpload = upload.fields([
+  { name: "Image", maxCount: 1 },
+  { name: "AuxImage", maxCount: 1 },
+])
+pokemonsHandler.post("/", cpUpload, async (req, res) => {
   try {
-    const { Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso, Tipos } = req.body
+    const { Nombre, Vida, Ataque, Defensa, Velocidad, Altura, Peso } = req.body
+    let { Tipos } = req.body
+    Tipos = Tipos.split(",").map((tipo) => Number(tipo))
+
+    const serverAddress = `${req.protocol}://${req.get("host")}`
+    const Imagen = `${serverAddress}/${req.files.Image[0].path}`
+    const ImagenAux = `${serverAddress}/${req.files.AuxImage[0].path}`
 
     const newPokemonRes = await newPokemon(Nombre, Imagen, ImagenAux, Vida, Ataque, Defensa, Velocidad, Altura, Peso, Tipos)
 
     res.status(200).json(newPokemonRes)
+    // res.status(200).send("devmode")
   } catch (error) {
+    console.log(error.message)
     res.status(400).json({ error: ` on post pokemon: ${error.message}` })
 
     //avoid express to crash on error
   }
 })
-
-// pokemonsHandler.get("/", async (req, res) => {
-//   console.log("estyo en db pokenon")
-//   // try {
-//   //   const allPokemons = await getPokemonFromDB()
-//   //   res.status(200).json(allPokemons)
-//   // } catch (error) {
-//   //   res.status(400).json({ error: ` on get /db: \n ${error.message}` })
-//   // }
-// })
 
 module.exports = pokemonsHandler

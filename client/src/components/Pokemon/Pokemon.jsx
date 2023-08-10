@@ -20,7 +20,7 @@ const Pokemon = () => {
     dispatch(setGlobalLoader(true)) // prende el loader
     const begin = async () => {
       if (allPokemons.length === 0) {
-        //   await dispatch(loadApi(dispatch)) //carga el estaddo global con toda la data en allPokemons y en caché
+        await dispatch(loadApi(dispatch)) //carga el estaddo global con toda la data en allPokemons y en caché
       }
       if (typesOfPokemons.length === 0) {
         await dispatch(loadTypes(dispatch))

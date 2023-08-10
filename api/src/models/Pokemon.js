@@ -17,6 +17,7 @@ module.exports = (sequelize) => {
       Nombre: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       //pokemon.sprites.other.home.front_default
       //pokemon.sprites.other.home.front_shiny
