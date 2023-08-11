@@ -104,11 +104,11 @@ li {
 .pistureWrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: start;
   margin: 0 auto;
   max-width: 90%;
-  padding: 0 1rem;
+  padding-top:  3rem;
 }
 
 .profilePicture {
@@ -130,4 +130,15 @@ li {
   position: absolute;
   visibility: hidden;
   left: 0;
+}
+
+@media (max-width: 768px) {
+    .aboutcontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 95%;
+        padding: 0 1rem;
+      }
 }
