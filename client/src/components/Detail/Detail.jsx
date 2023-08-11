@@ -41,6 +41,8 @@ const Detail = () => {
           } catch (error) {
             setPokemonDetail([])
             dispatch(setGlobalLoader(false))
+            // how to delete the error from console?
+            console.log("el error del catch en APIes: ", error)
           }
         }
         detailBegin()
