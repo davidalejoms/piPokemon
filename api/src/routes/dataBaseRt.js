@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const { getPokemonFromBd, getPokemonFromBdByIdOrName } = require("../controllers/dataBaseCt.js")
+const { getPokemonFromBd, getPokemonFromBdByIdOrName } = require("../controllers/dataBaseCT.js")
 
 const dataBaseHandler = Router()
 
