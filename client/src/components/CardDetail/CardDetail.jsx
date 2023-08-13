@@ -11,7 +11,11 @@ import {
   detailContainer,
   statsWrapper,
   bouncer,
+  headerWrapper,
+  linkBack,
 } from "./CardDetail.module.css"
+import { Link } from "react-router-dom"
+
 import PropTypes from "prop-types"
 import { AiOutlineColumnHeight } from "react-icons/ai"
 import { GiWeight } from "react-icons/gi"
@@ -36,10 +40,19 @@ function CardDetail({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, A
 
   return (
     // disable all link styles
-    <div
+    <> <div
       className={cardUnit}
       style={{ textDecoration: "none", color: "inherit" }}
     >
+    <div className={headerWrapper}>
+    <Link
+      to="/pokemon"
+      className={linkBack}
+    >
+      Go back to catch&apos;em all!
+    </Link>
+    </div>
+   
       <div className={detailContainer}>
         <img
           className={mainImg}
@@ -132,6 +145,7 @@ function CardDetail({ Id, Nombre, Imagen, ImagenAux, Vida, Defensa, Velocidad, A
         />
       </div>
     </div>
+    </>
   )
 }
 CardDetail.propTypes = {

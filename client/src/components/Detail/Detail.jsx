@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Loader from "../Loader/Loader"
 import axios from "axios"
 import CardDetail from "../CardDetail/CardDetail"
-import style from "./Detail.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { setGlobalLoader } from "../../redux/actions"
 import NoPokemons from "../NoPokemons/NoPokemons"
@@ -75,14 +74,8 @@ const Detail = () => {
 
       {pokemonDetail.length === 0 && !loader && <NoPokemons />}
 
-      <div className={style.headerWrapper}>
-        <Link
-          to="/pokemon"
-          className={style.linkBack}
-        >
-          Go back to catch&apos;em all!
-        </Link>
-      </div>
+  
+      
       {pokemonDetail.map((pokemon) => {
         return (
           <CardDetail
