@@ -13,6 +13,7 @@ const SearchField = ({ toggleMobileMenuHandler }) => {
 
     e.target.search.value && routerFront(`/pokemon/detail/${e.target.search.value}`)
     toggleMobileMenuHandler && toggleMobileMenuHandler()
+    e.target.reset()
   }
   const clickSearchPokemon = () => {
     routerFront(`/pokemon/detail/${formRef.current.value}`)
@@ -21,6 +22,7 @@ const SearchField = ({ toggleMobileMenuHandler }) => {
   return (
     <>
       <form
+        id="miFormulario"
         className={style.searchField}
         onSubmit={searchPokemon}
         style={{ position: "relative" }}
