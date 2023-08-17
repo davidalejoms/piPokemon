@@ -1,0 +1,211 @@
+.cardUnit * {
+  /* border: 1px solid red; */
+}
+
+.headerWrapper {
+  /* position: absolute; */
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.linkBack {
+  /* position: absolute; */
+  /* delete link  underline styles */
+  text-decoration: none;
+  font-size: 2rem;
+  color: var(--white);
+  background-color: var(--accent);
+  box-shadow: 0px 0px 30px rgb(255, 0, 0);
+  padding: 0.5rem 3rem;
+  border-radius: 90px;
+  animation: shadows 1s infinite alternate;
+}
+.linkBack {
+  /* position: absolute; */
+  /* delete link  underline styles */
+  text-decoration: none;
+  font-size: 2rem;
+  color: var(--white);
+  background-color: var(--accent);
+  box-shadow: 0px 0px 30px rgb(255, 0, 0);
+  padding: 0.5rem 3rem;
+  border-radius: 90px;
+  animation: shadows 1s infinite alternate;
+  margin-bottom: 2rem;
+}
+@keyframes shadows {
+  0% {
+    box-shadow: 0px 0px 30px rgb(255, 0, 0);
+  }
+  100% {
+    box-shadow: 0px 0px 30px rgb(255, 255, 255);
+  }
+}
+
+.cardUnit {
+  /* background-color: rgb(44, 44, 44); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border-radius: 1em; */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  text-align: center;
+  margin: 0 auto;
+  /* height: 100vh; */
+  max-width: 100%;
+}
+
+.detailContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.imagesWrapperForModal {
+  min-width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.statsWrapper {
+  padding: 3rem;
+  border-radius: 3rem;
+  box-shadow: 0px 0px 30px rgb(95, 164, 15);
+  background-color: #fff;
+  z-index: 10;
+}
+.cardUnit ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cardUnit button {
+  /* background-color: var(--accent); */
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  font-family: system-ui;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 999px;
+  /* transition: all 0.3s ease-in-out; */
+}
+.cardUnit button img {
+  width: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.mainImg,
+.auxImg {
+  padding: 3rem;
+  max-width: 25%;
+  min-height: auto;
+  opacity: 1;
+  transition: opacity 3s ease-in-out;
+  margin: 0 auto;
+  filter: drop-shadow(4px 4px 18px rgba(255, 255, 255, 0.825));
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas con ancho igual */
+  gap: 1rem; /* Espacio entre las columnas */
+  margin: 1rem;
+  width: 90%;
+  /* border: 1px solid red; */
+  margin-top: 1.5em;
+}
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cardUnit h2 {
+  text-align: left;
+  width: 100%;
+  padding-left: 1rem;
+  text-transform: capitalize;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+.statsLabel {
+  /* poppins font */
+  font-family: "Open Sans", sans-serif;
+  font-weight: light;
+  text-align: left;
+  color: #484848b0;
+  text-transform: uppercase;
+}
+.statsValue {
+  border: 1px solid rgba(128, 128, 128, 0.338);
+  border-radius: 0.5em;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  text-align: center;
+  font-weight: bolder;
+  margin: 0;
+}
+.iconWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.typeWrapper {
+  display: flex;
+  width: 100%;
+}
+.bouncer {
+  animation: bounce 0.5s infinite;
+}
+@keyframes bounce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .headerWrapper {
+    margin-top: 3rem;
+  }
+  .linkBack {
+    font-size: 1.5rem;
+  }
+  .cardUnit {
+    max-width: 100%;
+    height: 150vh;
+    justify-content: start;
+    border-radius: 0;
+  }
+  .detailContainer {
+    flex-direction: column;
+  }
+
+  .statsWrapper {
+    max-width: 100%;
+  }
+  .mainImg {
+    max-width: 80%;
+    padding: 10rem auto 0 -2rem;
+  }
+  .auxImg {
+    display: none;
+  }
+}

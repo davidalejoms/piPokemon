@@ -17,12 +17,15 @@ import Loader from "../Loader/Loader"
 import { useEffect, useMemo, useState } from "react"
 import { loadDataBase, loadTypes, setGlobalLoader } from "../../redux/actions"
 import axios from "axios"
+import Modal from "../Modal/Modal"
+import CardModal from "../CardModal/CardModal"
 
 const NewPokemon = () => {
   const alltypes = useSelector((state) => state.typesOfPokemons) // el frontdata es el estado global de shownInFront que se pinta en pantalla
   const dispatch = useDispatch()
   const { loader } = useSelector((state) => state.auxGlobalStates) // manejo del loader inicia mostrandose y cuando se acargue la api se oculta
-
+  const databasePokemons = useSelector((state) => state.databasePokemons) // las pokemon to show the modal
+  const [modalS, setModalS] = useState(false)
   useEffect(() => {
     //cargar tipos por si no estan cargados
     dispatch(setGlobalLoader(true))
@@ -30,14 +33,47 @@ const NewPokemon = () => {
     if (alltypes.length === 0) {
       const begin = async () => {
         await dispatch(loadTypes(dispatch))
+        await dispatch(loadDataBase(dispatch))
 
         dispatch(setGlobalLoader(false))
       }
+
       begin()
     } else {
       dispatch(setGlobalLoader(false)) // apaga el loader
     }
-  }, [dispatch, alltypes.length])
+  }, [dispatch, alltypes.length, databasePokemons.length])
+
+  const lastPokemon = databasePokemons.at(-1)
+
+  const modalContent = databasePokemons.length != 0 && [
+    {
+      title: `${lastPokemon.Nombre} Created! `,
+      content: (
+        <CardModal
+          key={lastPokemon.Id}
+          Id={lastPokemon.Id}
+          Nombre={lastPokemon.Nombre}
+          Imagen={lastPokemon.Imagen}
+          ImagenAux={lastPokemon.ImagenAux}
+          Vida={lastPokemon.Vida}
+          Defensa={lastPokemon.Defensa}
+          Ataque={lastPokemon.Ataque}
+          Velocidad={lastPokemon.Velocidad}
+          Altura={lastPokemon.Altura}
+          Peso={lastPokemon.Peso}
+          Tipo={lastPokemon.Types}
+        />
+      ),
+      buttonOk: "Go Back",
+      // buttonOption: "Ver Opciones",
+      buttonOption: "",
+      // buttonCancel: " Cancelar",
+      buttonCancel: "",
+      // image: Imagen,
+      // image: "",
+    },
+  ]
 
   const randomicon = () => {
     const icons = [
@@ -139,7 +175,8 @@ const NewPokemon = () => {
 
         if (newPokemonsTODB.status === 200) {
           //TODO: hacer un modal para mostrar el resultado de la creacion del pokemon
-          alert("Pokemon creado")
+          setModalS(true)
+          // e.target.reset()
           dispatch(loadDataBase(dispatch))
         } else alert("no se pudo crear el pokemon")
       } catch (error) {
@@ -153,7 +190,12 @@ const NewPokemon = () => {
   return (
     <>
       {loader && <Loader />}
-
+      {modalS && (
+        <Modal
+          key="modal"
+          content={modalContent}
+        />
+      )}
       <div className={styles.componentContainer}>
         <h1>Create Your Own Pokemon</h1>
         <div className={styles.elementsWrapper}>

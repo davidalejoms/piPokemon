@@ -7,15 +7,15 @@ import { GiSettingsKnobs } from "react-icons/gi"
 const Modal = (props) => {
   const [modal, setModal] = useState(true)
   const modalcloseHandler = () => setModal(false)
-  const modalOkHandler = () => alert("ok Handler")
+  const modalOkHandler = () => setModal(false)
   const modalOptionsHandler = () => alert("options Handler")
   return (
     <>
       {modal &&
-        props.content.map((mod, i) => {
+        props.content.map((mod) => {
           return (
             <div
-              key={i}
+              key="1"
               className={styles.modalcontainer}
             >
               <div className={styles.modal}>
