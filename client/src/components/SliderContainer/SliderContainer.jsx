@@ -43,8 +43,8 @@ const SliderContainer = () => {
             <div className={style.iconWrapper}>
               <img
                 className="normal"
-                src={`/src/assets/icons/normal.svg`}
-                alt=""
+                src={`/icons/normal.svg`}
+                alt="icons for normal type"
               />
               <div>All</div>
             </div>
@@ -62,8 +62,8 @@ const SliderContainer = () => {
                 <div className={style.iconWrapper}>
                   <img
                     // className={type.tipo}
-                    src={`/src/assets/icons/${type.tipo}.svg`}
-                    alt=""
+                    src={`/icons/${type.tipo}.svg`}
+                    alt={`icons for ${type.tipo} type`}
                   />
                   <div>{type.tipo}</div>
                 </div>
